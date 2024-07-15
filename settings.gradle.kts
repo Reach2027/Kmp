@@ -1,5 +1,3 @@
-rootProject.name = "Kmp"
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
@@ -12,7 +10,6 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         maven("https://mirrors.tencent.com/nexus/repository/maven-public/") // google and mavenCentral
         google()
@@ -20,4 +17,12 @@ dependencyResolutionManagement {
     }
 }
 
+rootProject.name = "Kmp"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":composeApp")
+
+include(":feature:bingwallpaper")
+
+include(":feature-data:bingwallpaper")

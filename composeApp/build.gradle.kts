@@ -6,9 +6,10 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.compose.compiler)
+
+    alias(libs.plugins.androidApplication)
 }
 
 kotlin {
@@ -23,21 +24,23 @@ kotlin {
                         // Serve sources to debug inside browser
                         add(project.projectDir.path)
                     }
+                    open = true
+                    port = 8081
                 }
             }
         }
         binaries.executable()
     }
-    
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -48,11 +51,13 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         commonMain.dependencies {
+            implementation(projects.feature.bingwallpaper)
+
             implementation(compose.animation)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
@@ -78,7 +83,7 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "com.reach.kmp.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
