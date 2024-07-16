@@ -6,11 +6,11 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.featureData.bingwallpaper)
+
         }
     }
 }
 
 android {
-    namespace = "com.reach.kmp.feature.bingwallpaper"
+    namespace = "com.reach.kmp.ui.core.common"
 }

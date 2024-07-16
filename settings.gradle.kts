@@ -1,5 +1,6 @@
 
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         maven("https://mirrors.tencent.com/nexus/repository/maven-public/") // google and mavenCentral
         maven("https://mirrors.tencent.com/nexus/repository/gradle-plugins/")
@@ -25,4 +26,13 @@ include(":composeApp")
 
 include(":feature:bingwallpaper")
 
+include(":ui-core:common")
+
+include(":ui-base:common")
+
 include(":feature-data:bingwallpaper")
+
+include(":data-core:common")
+include(":data-core:network")
+
+include(":data-base:common")

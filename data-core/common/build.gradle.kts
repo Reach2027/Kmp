@@ -11,5 +11,5 @@ kotlin {
 }
 
 android {
-    namespace = "com.reach.kmp.feature.data.bingwallpaper"
+    namespace = "com.reach.kmp.data.core.common"
 }
