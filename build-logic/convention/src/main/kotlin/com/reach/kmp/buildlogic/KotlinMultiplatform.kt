@@ -32,8 +32,21 @@ internal fun Project.configureKotlinMultiplatform(
     sourceSets.apply {
         commonMain {
             dependencies {
+                implementation(project(":data-core:common"))
+                implementation(project(":data-base:common"))
+
                 implementation(libs, "kotlinx-coroutines-core")
                 implementation(libs, "koin-core")
+
+                implementation(libs, "androidx-annotation")
+                implementation(libs, "androidx-collection")
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs, "kotlinx-coroutines-test")
             }
         }
     }

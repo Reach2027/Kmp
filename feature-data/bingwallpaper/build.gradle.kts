@@ -1,11 +1,16 @@
 plugins {
     alias(libs.plugins.reachKmp)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.dataCore.network)
 
+            implementation(libs.ktor.core)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
         }
     }
 }

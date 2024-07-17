@@ -7,6 +7,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.featureData.bingwallpaper)
+
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
         }
     }
 }

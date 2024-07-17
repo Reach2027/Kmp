@@ -11,6 +11,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun BingWallpaperRoute() {
+
+    BingWallpaperScreen()
+}
+
+@Composable
+private fun BingWallpaperScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

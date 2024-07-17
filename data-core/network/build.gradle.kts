@@ -5,7 +5,11 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-
+            implementation(libs.ktor.core)
+            implementation(libs.ktor.cio)
+            implementation(libs.ktor.logging)
+            implementation(libs.ktor.negotiation)
+            implementation(libs.ktor.serialization.json)
         }
     }
 }

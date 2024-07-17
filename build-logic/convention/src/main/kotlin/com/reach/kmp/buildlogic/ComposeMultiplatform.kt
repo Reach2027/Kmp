@@ -14,6 +14,9 @@ internal fun Project.configureComposeMultiplatform(
     sourceSets.apply {
         commonMain {
             dependencies {
+                implementation(project(":ui-core:common"))
+                implementation(project(":ui-base:common"))
+
                 implementation(composeDeps.animation)
                 implementation(composeDeps.material3)
                 implementation(composeDeps.materialIconsExtended)
@@ -24,6 +27,10 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(composeDeps.components.uiToolingPreview)
                 implementation(composeDeps.runtime)
                 implementation(composeDeps.runtimeSaveable)
+
+                implementation(libs, "androidx-lifecycle-runtime")
+                implementation(libs, "androidx-lifecycle-viewmodel")
+                implementation(libs, "androidx-lifecycle-common")
             }
         }
     }
