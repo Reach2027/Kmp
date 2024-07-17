@@ -1,5 +1,4 @@
 plugins {
-    alias(libs.plugins.reachKmp)
     alias(libs.plugins.reachCmp)
 }
 

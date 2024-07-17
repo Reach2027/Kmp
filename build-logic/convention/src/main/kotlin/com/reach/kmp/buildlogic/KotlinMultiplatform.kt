@@ -4,10 +4,12 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 internal fun Project.configureKotlinMultiplatform(
-    extension: KotlinMultiplatformExtension
+    extension: KotlinMultiplatformExtension,
+    addCommonDeps: KotlinDependencyHandler.() -> Unit = { },
 ) = extension.apply {
     jvmToolchain(17)
 
@@ -32,14 +34,13 @@ internal fun Project.configureKotlinMultiplatform(
     sourceSets.apply {
         commonMain {
             dependencies {
-                implementation(project(":data-core:common"))
-                implementation(project(":data-base:common"))
-
                 implementation(libs, "kotlinx-coroutines-core")
                 implementation(libs, "koin-core")
 
-                implementation(libs, "androidx-annotation")
-                implementation(libs, "androidx-collection")
+//                implementation(libs, "androidx-annotation")
+//                implementation(libs, "androidx-collection")
+
+                addCommonDeps()
             }
         }
 

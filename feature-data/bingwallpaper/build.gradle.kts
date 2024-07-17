@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.reachKmp)
+    alias(libs.plugins.reachFeatureData)
     alias(libs.plugins.kotlinxSerialization)
 }
 

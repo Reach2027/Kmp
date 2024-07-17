@@ -6,7 +6,7 @@ import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 
 val dispatcherModule = module {
-    single<CoroutineDispatcher>(qualifier(QualifierDispatchers.IO)) { Dispatchers.IO }
+    single<CoroutineDispatcher>(qualifier(QualifierDispatchers.IO)) { Dispatchers.Default }
 
     single<CoroutineDispatcher>(qualifier(QualifierDispatchers.Default)) { Dispatchers.Default }
 }

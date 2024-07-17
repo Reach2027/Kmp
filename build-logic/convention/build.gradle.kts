@@ -27,12 +27,20 @@ tasks {
 
 gradlePlugin {
     plugins {
+        register("Feature"){
+            id = "com.reach.kmp.feature"
+            implementationClass = "FeatureConventionPlugin"
+        }
+        register("FeatureData"){
+            id = "com.reach.kmp.feature.data"
+            implementationClass = "FeatureDataConventionPlugin"
+        }
         register("kotlinMultiplatform"){
-            id = "com.reach.kmp.kotlinMultiplatform"
+            id = "com.reach.kmp.kotlin.multiplatform"
             implementationClass = "KotlinMultiplatformConventionPlugin"
         }
         register("composeMultiplatform"){
-            id = "com.reach.kmp.composeMultiplatform"
+            id = "com.reach.kmp.compose.multiplatform"
             implementationClass = "ComposeMultiplatformConventionPlugin"
         }
     }

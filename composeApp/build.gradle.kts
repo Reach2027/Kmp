@@ -56,8 +56,6 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
-        val desktopMain by getting
-
         commonMain.dependencies {
             implementation(projects.feature.bingwallpaper)
 
@@ -78,6 +76,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
 
+        val desktopMain by getting
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
         }

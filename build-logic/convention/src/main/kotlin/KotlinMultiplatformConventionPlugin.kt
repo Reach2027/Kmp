@@ -16,6 +16,7 @@ class KotlinMultiplatformConventionPlugin: Plugin<Project> {
         }
 
         extensions.configure<KotlinMultiplatformExtension>(::configureKotlinMultiplatform)
+
         extensions.configure<LibraryExtension>(::configureAndroid)
     }
 }

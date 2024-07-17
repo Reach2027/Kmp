@@ -8,7 +8,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-class ComposeMultiplatformConventionPlugin : Plugin<Project> {
+class FeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(libs.findPlugin("kotlinMultiplatform").get().get().pluginId)
@@ -20,7 +20,10 @@ class ComposeMultiplatformConventionPlugin : Plugin<Project> {
 
         extensions.configure<KotlinMultiplatformExtension> {
             configureKotlinMultiplatform(this)
-            configureComposeMultiplatform(this)
+            configureComposeMultiplatform(this) {
+                implementation(project(":ui-core:common"))
+                implementation(project(":ui-base:common"))
+            }
         }
 
         extensions.configure<LibraryExtension>(::configureAndroid)

@@ -1,6 +1,5 @@
 plugins {
-    alias(libs.plugins.reachKmp)
-    alias(libs.plugins.reachCmp)
+    alias(libs.plugins.reachFeature)
 }
 
 kotlin {

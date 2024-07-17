@@ -44,6 +44,7 @@ kotlinx-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collectio
 
 ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor" }
 ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
@@ -93,5 +94,7 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
-reachKmp = { id = "com.reach.kmp.kotlinMultiplatform", version = "unspecified" }
-reachCmp = { id = "com.reach.kmp.composeMultiplatform", version = "unspecified" }
+reachFeature = { id = "com.reach.kmp.feature", version = "unspecified" }
+reachFeatureData = { id = "com.reach.kmp.feature.data", version = "unspecified" }
+reachKmp = { id = "com.reach.kmp.kotlin.multiplatform", version = "unspecified" }
+reachCmp = { id = "com.reach.kmp.compose.multiplatform", version = "unspecified" }
