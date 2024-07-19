@@ -12,11 +12,11 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.ktor.cio)
+            implementation(libs.ktor.okhttp)
         }
 
         iosMain.dependencies {
-            implementation(libs.ktor.cio)
+            implementation(libs.ktor.darwin)
         }
 
         wasmJsMain.dependencies {
@@ -25,7 +25,7 @@ kotlin {
 
         val desktopMain by getting
         desktopMain.dependencies {
-            implementation(libs.ktor.cio)
+            implementation(libs.ktor.okhttp)
         }
     }
 }

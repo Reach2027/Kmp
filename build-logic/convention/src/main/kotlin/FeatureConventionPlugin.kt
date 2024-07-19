@@ -19,7 +19,10 @@ class FeatureConventionPlugin : Plugin<Project> {
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
-            configureKotlinMultiplatform(this)
+            configureKotlinMultiplatform(this) {
+                implementation(project(":data-core:common"))
+                implementation(project(":data-base:common"))
+            }
             configureComposeMultiplatform(this) {
                 implementation(project(":ui-core:common"))
                 implementation(project(":ui-base:common"))

@@ -57,6 +57,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.uiCore.common)
             implementation(projects.feature.bingwallpaper)
 
             implementation(compose.animation)
@@ -69,6 +70,17 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(compose.runtime)
             implementation(compose.runtimeSaveable)
+
+            implementation(libs.koin.compose)
+
+            implementation(libs.core.bundle)
+
+            implementation(libs.lifecycle.common)
+            implementation(libs.lifecycle.runtime)
+            implementation(libs.lifecycle.viewmodel)
+            implementation(libs.lifecycle.viewmodel.savedstate)
+
+            implementation(libs.navigation)
         }
 
         androidMain.dependencies {

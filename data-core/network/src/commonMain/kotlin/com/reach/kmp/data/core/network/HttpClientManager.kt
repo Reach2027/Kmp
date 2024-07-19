@@ -8,7 +8,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 private const val CONNECT_TIMEOUT = 5_000L
-private const val SOCKET_TIMEOUT = 2_000L
+private const val SOCKET_TIMEOUT = 3_000L
 
 internal fun ktorClient(): HttpClient = HttpClient {
     install(Logging)
