@@ -29,7 +29,7 @@ internal class DefaultBingWallpaperApi(
         check(beforeDays > -1) { "Before days must be >= 0" }
         check(beforeDays < 8) { "Before days must be < 8" }
         check(count > 0) { "Image count must be > 0" }
-        check(count < 8) { "Image count must be < 9" }
+        check(count < 8) { "Image count must be < 8" }
 
         val response: BingWallpapersModel = httpClient.get(BING_BASE_URL + BING_IMAGE_URL) {
             url {

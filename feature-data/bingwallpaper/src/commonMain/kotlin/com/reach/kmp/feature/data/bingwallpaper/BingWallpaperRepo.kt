@@ -7,10 +7,15 @@ import com.reach.kmp.feature.data.bingwallpaper.source.BingWallpaperApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 
+private const val MAX_COUNT = 7
+
+private const val MAX_BEFORE_DAYS = 7
+
 interface BingWallpaperRepo {
 
     fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>>
 
+    fun getWallpapers(page: Int): Flow<Result<List<BingWallpaperModel>>>
 }
 
 internal class DefaultBingWallpaperRepo(
@@ -24,4 +29,13 @@ internal class DefaultBingWallpaperRepo(
                 .images[0]
         }
 
+    override fun getWallpapers(page: Int): Flow<Result<List<BingWallpaperModel>>> =
+        flowResult(dispatcher) {
+            if (page < 0 || page > 1) {
+                emptyList()
+            } else {
+                bingWallpaperApi.getBingWallpapers(page * MAX_BEFORE_DAYS, MAX_COUNT)
+                    .images
+            }
+        }
 }

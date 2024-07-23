@@ -88,6 +88,10 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
 
+        wasmJsMain.dependencies {
+            implementation(npm("@js-joda/timezone", "2.3.0"))
+        }
+
         val desktopMain by getting
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
