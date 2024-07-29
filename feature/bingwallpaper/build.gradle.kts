@@ -15,6 +15,7 @@
  */
 plugins {
     alias(libs.plugins.reachFeature)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -24,6 +25,8 @@ kotlin {
 
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+
+            implementation(libs.kotlinx.serialization.core)
 
             implementation(libs.coil)
             implementation(libs.coil.ktor)

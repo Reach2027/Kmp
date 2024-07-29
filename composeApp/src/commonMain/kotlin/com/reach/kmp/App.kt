@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.reach.kmp.feature.bingwallpaper.ROUTE_BING_WALLPAPER
+import com.reach.kmp.feature.bingwallpaper.RouteBingWallpaper
 import com.reach.kmp.feature.bingwallpaper.bingWallpaperRoute
 import com.reach.kmp.feature.bingwallpaper.di.bingWallpaperModule
 import com.reach.kmp.ui.core.common.animation.enterScreenTransition
@@ -55,7 +55,7 @@ private val appModule = module {
 private fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = ROUTE_BING_WALLPAPER,
+        startDestination = RouteBingWallpaper,
         enterTransition = { enterScreenTransition() },
         exitTransition = { exitScreenTransition() },
         popEnterTransition = { popEnterScreenTransition() },

@@ -45,19 +45,21 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import coil3.compose.AsyncImage
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
-import org.koin.compose.viewmodel.koinViewModel
+import kotlinx.serialization.Serializable
+import org.koin.compose.viewmodel.koinNavViewModel
 
-const val ROUTE_BING_WALLPAPER = "ROUTE_BING_WALLPAPER"
+@Serializable
+object RouteBingWallpaper
 
 fun NavGraphBuilder.bingWallpaperRoute() {
-    composable(ROUTE_BING_WALLPAPER) {
+    composable<RouteBingWallpaper> {
         BingWallpaperRoute()
     }
 }
 
 @Composable
 private fun BingWallpaperRoute(
-    viewModel: BingWallpaperViewModel = koinViewModel(),
+    viewModel: BingWallpaperViewModel = koinNavViewModel(),
 ) {
     val uiState: UiState by viewModel.uiState.collectAsStateWithLifecycle()
 
