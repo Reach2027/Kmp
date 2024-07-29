@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Reach Project
+ * Copyright $YEAR Reach Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,24 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    alias(libs.plugins.reachFeature)
-}
-
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            implementation(projects.featureData.bingwallpaper)
-
-            implementation(libs.koin.compose)
-            implementation(libs.koin.compose.viewmodel)
-
-            implementation(libs.coil)
-            implementation(libs.coil.ktor)
-        }
-    }
-}
-
-android {
-    namespace = "com.reach.kmp.feature.bingwallpaper"
-}

@@ -1,5 +1,5 @@
 [versions]
-compose-plugin = "1.6.11"
+composePlugin = "1.7.0-alpha02"
 kotlin = "2.0.0"
 
 kotlinxCoroutines = "1.9.0-RC"
@@ -10,18 +10,17 @@ kotlinxImmutable = "0.3.7"
 ktor = "3.0.0-beta-2"
 
 coreBundle = "1.0.0"
-navigation = "2.7.0-alpha07"
+navigation = "2.8.0-alpha08"
 lifecycle = "2.8.0"
 
-androidxAnnotation = "1.8.0"
-androidxCollection = "1.4.1"
-androidxPaging = "3.3.0"
+androidxAnnotation = "1.8.1"
+androidxCollection = "1.4.2"
+androidxPaging = "3.3.1"
 androidxDataStore = "1.1.1"
 
-koin = "3.6.0-Beta5"
-koinCompose = "1.2.0-Beta5"
+koin = "4.0.0-RC1"
 
-coil = "3.0.0-alpha08"
+coil = "3.0.0-alpha09"
 
 okio = "3.9.0"
 
@@ -32,7 +31,7 @@ agp = "8.4.2"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
-androidx-activityCompose = "1.9.0"
+androidx-activityCompose = "1.9.1"
 
 [libraries]
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
@@ -78,12 +77,12 @@ androidx-paging-test = { group = "androidx.paging", name = "paging-testing", ver
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
-koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koinCompose" }
-koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinCompose" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 
 coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
-coil-ktor = { group = "io.coil-kt.coil3", name = "coil-network-ktor", version.ref = "coil" }
+coil-ktor = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }
 
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 
@@ -99,7 +98,7 @@ kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
