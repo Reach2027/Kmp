@@ -16,7 +16,6 @@
 
 package com.reach.kmp.feature.bingwallpaper
 
-import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,12 +29,16 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,10 +46,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import co.touchlab.kermit.Logger
 import coil3.compose.AsyncImage
+import com.reach.kmp.data.core.common.RTAG
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
-import org.koin.compose.viewmodel.koinNavViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Serializable
 object RouteBingWallpaper
@@ -59,13 +66,14 @@ fun NavGraphBuilder.bingWallpaperRoute() {
 
 @Composable
 private fun BingWallpaperRoute(
-    viewModel: BingWallpaperViewModel = koinNavViewModel(),
+    viewModel: BingWallpaperViewModel = koinViewModel(),
 ) {
     val uiState: UiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     BingWallpaperScreen(
-        uiState,
+        uiState = uiState,
         onRetryClick = { viewModel.loadFirstPage() },
+        loadMore = { viewModel.loadNextPage() },
     )
 }
 
@@ -73,16 +81,12 @@ private fun BingWallpaperRoute(
 private fun BingWallpaperScreen(
     uiState: UiState,
     onRetryClick: () -> Unit,
+    loadMore: () -> Unit,
 ) {
-    Crossfade(
-        targetState = uiState,
-        modifier = Modifier.fillMaxSize(),
-    ) {
-        when (uiState) {
-            UiState.Loading -> Loading()
-            is UiState.Error -> Error(uiState, onRetryClick)
-            is UiState.Items -> Items(uiState)
-        }
+    when (uiState) {
+        UiState.Loading -> Loading()
+        is UiState.Error -> Error(uiState, onRetryClick)
+        is UiState.Items -> Items(uiState, loadMore)
     }
 }
 
@@ -115,36 +119,86 @@ private fun Error(
 }
 
 @Composable
-private fun Items(uiState: UiState.Items) {
+private fun Items(
+    uiState: UiState.Items,
+    loadMore: () -> Unit,
+) {
+    val gridState = rememberLazyGridState()
+
+    LaunchedEffect(gridState) {
+        snapshotFlow {
+            val lastIndex = gridState.layoutInfo.visibleItemsInfo.last().index
+            Logger.e(RTAG) { "lastIndex: $lastIndex" }
+            lastIndex > 5
+        }.map { checkLoad ->
+            if (checkLoad) uiState.itemsState == ItemState.Normal else false
+        }.distinctUntilChanged()
+            .collect { needLoad ->
+                Logger.e(RTAG) { "needLoad: $needLoad" }
+                if (needLoad) loadMore()
+            }
+    }
+
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 390.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
+        state = gridState,
+        contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.fillMaxWidth(),
     ) {
-        item(
-            key = "Top",
-            span = { GridItemSpan(maxLineSpan) },
-            contentType = "Spacer",
-        ) {
-            Spacer(Modifier.height(1.dp))
-        }
-
         items(
-            count = uiState.items.size,
-            key = { index -> uiState.items[index].imageUrl },
+            items = uiState.items,
+            key = { item -> item.imageUrl },
             contentType = { "Items" },
-        ) { index ->
-            Item(model = uiState.items[index])
-        }
+        ) { item -> Item(model = item) }
 
-        item(
-            key = "Bottom",
-            span = { GridItemSpan(maxLineSpan) },
-            contentType = "Spacer",
-        ) {
-            Spacer(Modifier.height(16.dp))
+        when (uiState.itemsState) {
+            ItemState.LoadingMore -> item(
+                key = "LoadingMore",
+                span = { GridItemSpan(maxLineSpan) },
+                contentType = "LoadingMore",
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+
+            is ItemState.LoadMoreError -> item(
+                key = "LoadMoreError",
+                span = { GridItemSpan(maxLineSpan) },
+                contentType = "LoadMoreError",
+            ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(uiState.itemsState.message)
+                    Button(onClick = loadMore) {
+                        Text("Retry")
+                    }
+                }
+            }
+
+            ItemState.LoadedAll -> {
+                item(
+                    key = "Bottom",
+                    span = { GridItemSpan(maxLineSpan) },
+                    contentType = "Spacer",
+                ) {
+                    Spacer(Modifier.height(16.dp))
+                }
+            }
+
+            ItemState.Normal -> {
+                item(
+                    key = "Bottom",
+                    span = { GridItemSpan(maxLineSpan) },
+                    contentType = "Spacer",
+                ) {
+                    Spacer(Modifier.height(16.dp))
+                }
+            }
         }
     }
 }

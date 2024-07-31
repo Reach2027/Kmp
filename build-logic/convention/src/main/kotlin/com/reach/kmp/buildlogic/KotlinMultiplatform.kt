@@ -37,6 +37,8 @@ internal fun Project.configureKotlinMultiplatform(
                 implementation(libs, "kotlinx-coroutines-core")
                 implementation(libs, "koin-core")
 
+                implementation(libs, "kermit")
+
 //                implementation(libs, "androidx-annotation")
 //                implementation(libs, "androidx-collection")
 

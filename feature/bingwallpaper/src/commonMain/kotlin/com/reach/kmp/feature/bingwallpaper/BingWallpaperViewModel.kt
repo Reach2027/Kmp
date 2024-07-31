@@ -20,10 +20,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reach.kmp.data.base.common.Result
 import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
+private const val DELAY = 1000L
 
 internal class BingWallpaperViewModel(
     private val repo: BingWallpaperRepo,
@@ -47,6 +50,7 @@ internal class BingWallpaperViewModel(
                         itemsState = ItemState.Normal,
                     )
                 }
+                if (res is Result.Success) delay(DELAY)
                 _uiState.emit(state)
             }
         }
@@ -72,6 +76,7 @@ internal class BingWallpaperViewModel(
                         itemsState = ItemState.LoadedAll,
                     )
                 }
+                if (res is Result.Success) delay(DELAY)
                 _uiState.emit(state)
             }
         }
