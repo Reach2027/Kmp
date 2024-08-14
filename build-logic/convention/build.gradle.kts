@@ -27,21 +27,37 @@ tasks {
 
 gradlePlugin {
     plugins {
-        register("Feature"){
-            id = "com.reach.kmp.feature"
-            implementationClass = "FeatureConventionPlugin"
+        register("ApplicationPlugin"){
+            id = "com.reach.kmp.application"
+            implementationClass = "ApplicationPlugin"
         }
-        register("FeatureData"){
-            id = "com.reach.kmp.feature.data"
-            implementationClass = "FeatureDataConventionPlugin"
+
+        register("FeatureModulePlugin"){
+            id = "com.reach.kmp.feature.module"
+            implementationClass = "FeatureModulePlugin"
         }
-        register("kotlinMultiplatform"){
-            id = "com.reach.kmp.kotlin.multiplatform"
-            implementationClass = "KotlinMultiplatformConventionPlugin"
+
+        register("FeatureDataModulePlugin"){
+            id = "com.reach.kmp.feature.data.module"
+            implementationClass = "FeatureDataModulePlugin"
         }
-        register("composeMultiplatform"){
-            id = "com.reach.kmp.compose.multiplatform"
-            implementationClass = "ComposeMultiplatformConventionPlugin"
+
+        register("UiCoreModulePlugin"){
+            id = "com.reach.kmp.ui.core.module"
+            implementationClass = "UiCoreModulePlugin"
+        }
+        register("UiBaseModulePlugin"){
+            id = "com.reach.kmp.ui.base.module"
+            implementationClass = "UiBaseModulePlugin"
+        }
+
+        register("DataCoreModulePlugin"){
+            id = "com.reach.kmp.data.core.module"
+            implementationClass = "DataCoreModulePlugin"
+        }
+        register("DataBaseModulePlugin"){
+            id = "com.reach.kmp.data.base.module"
+            implementationClass = "DataBaseModulePlugin"
         }
     }
 }

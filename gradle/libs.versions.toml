@@ -1,8 +1,8 @@
 [versions]
 composePlugin = "1.7.0-alpha02"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 
-kotlinxCoroutines = "1.9.0-RC"
+kotlinxCoroutines = "1.9.0-RC.2"
 kotlinxSerialization = "1.7.1"
 kotlinxDatetime = "0.6.0"
 kotlinxImmutable = "0.3.7"
@@ -14,13 +14,13 @@ navigation = "2.8.0-alpha08"
 lifecycle = "2.8.0"
 
 androidxAnnotation = "1.8.1"
-androidxCollection = "1.4.2"
-androidxPaging = "3.3.1"
+androidxCollection = "1.4.3"
+androidxPaging = "3.3.2"
 androidxDataStore = "1.1.1"
 
 koin = "4.0.0-RC1"
 
-coil = "3.0.0-alpha09"
+coil = "3.0.0-alpha10"
 
 okio = "3.9.0"
 
@@ -29,11 +29,11 @@ haze = "0.7.3"
 kermit = "2.0.4"
 
 # Android
-agp = "8.4.2"
-android-compileSdk = "34"
-android-minSdk = "24"
-android-targetSdk = "34"
-androidx-activityCompose = "1.9.1"
+agp = "8.5.2"
+androidCompileSdk = "35"
+androidMinSdk = "24"
+androidTargetSdk = "35"
+androidxActivityCompose = "1.9.1"
 
 [libraries]
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
@@ -94,7 +94,7 @@ haze-materials = { group = "dev.chrisbanes.haze", name = "haze-materials", versi
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
 
 # Android
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
 
 # Test
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -110,7 +110,11 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
-reachFeature = { id = "com.reach.kmp.feature", version = "unspecified" }
-reachFeatureData = { id = "com.reach.kmp.feature.data", version = "unspecified" }
-reachKmp = { id = "com.reach.kmp.kotlin.multiplatform", version = "unspecified" }
-reachCmp = { id = "com.reach.kmp.compose.multiplatform", version = "unspecified" }
+application = { id = "com.reach.kmp.application", version = "unspecified" }
+
+featureModule = { id = "com.reach.kmp.feature.module", version = "unspecified" }
+featureDataModule = { id = "com.reach.kmp.feature.data.module", version = "unspecified" }
+uiCoreModule = { id = "com.reach.kmp.ui.core.module", version = "unspecified" }
+uiBaseModule = { id = "com.reach.kmp.ui.base.module", version = "unspecified" }
+dataCoreModule = { id = "com.reach.kmp.data.core.module", version = "unspecified" }
+dataBaseModule = { id = "com.reach.kmp.data.base.module", version = "unspecified" }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 plugins {
-    alias(libs.plugins.reachKmp)
+    alias(libs.plugins.dataBaseModule)
 }
 
 kotlin {

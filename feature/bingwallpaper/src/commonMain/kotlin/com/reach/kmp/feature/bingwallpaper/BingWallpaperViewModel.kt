@@ -18,7 +18,9 @@ package com.reach.kmp.feature.bingwallpaper
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import com.reach.kmp.data.base.common.Result
+import com.reach.kmp.data.core.common.RTAG
 import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,7 +60,7 @@ internal class BingWallpaperViewModel(
 
     fun loadNextPage() {
         val currentState = _uiState.value
-        if (currentState !is UiState.Items) {
+        if (currentState !is UiState.Items || currentState.itemsState == ItemState.LoadedAll) {
             return
         }
         viewModelScope.launch {
@@ -78,6 +80,7 @@ internal class BingWallpaperViewModel(
                 }
                 if (res is Result.Success) delay(DELAY)
                 _uiState.emit(state)
+                Logger.e(RTAG) { "loadNextPage: ${state.itemsState}" }
             }
         }
     }

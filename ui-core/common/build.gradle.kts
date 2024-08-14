@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 plugins {
-    alias(libs.plugins.reachCmp)
+    alias(libs.plugins.uiCoreModule)
 }
 
 kotlin {

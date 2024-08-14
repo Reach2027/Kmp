@@ -20,17 +20,10 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
-
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.application)
 }
 
 kotlin {
-
-    jvmToolchain(17)
-
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -74,33 +67,6 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.uiCore.common)
             implementation(projects.feature.bingwallpaper)
-
-            implementation(compose.animation)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.foundation)
-            implementation(compose.ui)
-            implementation(compose.uiUtil)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.runtime)
-            implementation(compose.runtimeSaveable)
-
-            implementation(libs.koin.compose)
-
-            implementation(libs.core.bundle)
-
-            implementation(libs.lifecycle.common)
-            implementation(libs.lifecycle.runtime)
-            implementation(libs.lifecycle.viewmodel)
-            implementation(libs.lifecycle.viewmodel.savedstate)
-
-            implementation(libs.navigation)
-        }
-
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
         }
 
         wasmJsMain.dependencies {
@@ -128,7 +94,6 @@ compose.desktop {
 
 android {
     namespace = "com.reach.kmp"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
@@ -136,8 +101,6 @@ android {
 
     defaultConfig {
         applicationId = "com.reach.kmp"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "0.0.1-alpha"
     }
@@ -162,18 +125,5 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
-    dependencies {
-        debugImplementation(compose.uiTooling)
     }
 }
