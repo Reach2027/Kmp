@@ -1,17 +1,18 @@
 [versions]
-composePlugin = "1.7.0-alpha02"
-kotlin = "2.0.10"
+composePlugin = "1.7.0-alpha03"
+kotlin = "2.0.20"
 
 kotlinxCoroutines = "1.9.0-RC.2"
 kotlinxSerialization = "1.7.1"
-kotlinxDatetime = "0.6.0"
+kotlinxDatetime = "0.6.1"
 kotlinxImmutable = "0.3.7"
+kotlinxIo = "0.5.3"
 
 ktor = "3.0.0-beta-2"
 
-coreBundle = "1.0.0"
-navigation = "2.8.0-alpha08"
-lifecycle = "2.8.0"
+composeBundle = "1.0.0"
+composeNavigation = "2.8.0-alpha09"
+composeLifecycle = "2.8.0"
 
 androidxAnnotation = "1.8.1"
 androidxCollection = "1.4.3"
@@ -49,6 +50,8 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 
 kotlinx-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxImmutable" }
 
+kotlinx-io = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinxIo" }
+
 ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
@@ -59,14 +62,14 @@ ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation"
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 
-core-bundle = { group = "org.jetbrains.androidx.core", name = "core-bundle", version.ref = "coreBundle" }
+core-bundle = { group = "org.jetbrains.androidx.core", name = "core-bundle", version.ref = "composeBundle" }
 
-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 
-lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "lifecycle" }
-lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-lifecycle-viewmodel-savedstate = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
+lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "composeLifecycle" }
+lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "composeLifecycle" }
+lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeLifecycle" }
+lifecycle-viewmodel-savedstate = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "composeLifecycle" }
 
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidxAnnotation" }
 
