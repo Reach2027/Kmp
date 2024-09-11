@@ -1,10 +1,8 @@
 package com.reach.kmp.buildlogic
 
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
-import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureComposeMultiplatform(
@@ -12,11 +10,6 @@ internal fun Project.configureComposeMultiplatform(
 ) = extension.apply {
 
     val composeDeps = extensions.getByType<ComposeExtension>().dependencies
-
-    extensions.configure<ComposeCompilerGradlePluginExtension> {
-        enableStrongSkippingMode.set(true)
-        enableNonSkippingGroupOptimization.set(true)
-    }
 
     sourceSets.apply {
         commonMain {

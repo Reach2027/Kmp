@@ -50,10 +50,11 @@ import co.touchlab.kermit.Logger
 import coil3.compose.AsyncImage
 import com.reach.kmp.data.core.common.RTAG
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
-import org.koin.compose.viewmodel.koinViewModel
+import org.koin.compose.viewmodel.koinNavViewModel
 
 @Serializable
 object RouteBingWallpaper
@@ -66,7 +67,7 @@ fun NavGraphBuilder.bingWallpaperRoute() {
 
 @Composable
 private fun BingWallpaperRoute(
-    viewModel: BingWallpaperViewModel = koinViewModel(),
+    viewModel: BingWallpaperViewModel = koinNavViewModel(),
 ) {
     val uiState: UiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -126,10 +127,11 @@ private fun Items(
     val gridState = rememberLazyGridState()
 
     LaunchedEffect(gridState) {
+        delay(600L)
         snapshotFlow {
-            val lastIndex = gridState.layoutInfo.visibleItemsInfo.last().index
-            Logger.e(RTAG) { "lastIndex: $lastIndex" }
-            lastIndex > 5
+            val lastItem = gridState.layoutInfo.visibleItemsInfo.last()
+            Logger.e(RTAG) { "lastIndex: ${lastItem.index}" }
+            lastItem.index > 5
         }.map { checkLoad ->
             if (checkLoad) uiState.itemsState == ItemState.Normal else false
         }.distinctUntilChanged()
@@ -145,7 +147,7 @@ private fun Items(
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
     ) {
         items(
             items = uiState.items,
@@ -160,7 +162,9 @@ private fun Items(
                 contentType = "LoadingMore",
             ) {
                 Box(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .height(100.dp)
+                        .animateItem(),
                     contentAlignment = Alignment.Center,
                 ) {
                     CircularProgressIndicator()
@@ -172,7 +176,11 @@ private fun Items(
                 span = { GridItemSpan(maxLineSpan) },
                 contentType = "LoadMoreError",
             ) {
-                Column(modifier = Modifier.fillMaxWidth()) {
+                Column(
+                    modifier = Modifier.fillMaxWidth()
+                        .height(100.dp)
+                        .animateItem(),
+                ) {
                     Text(uiState.itemsState.message)
                     Button(onClick = loadMore) {
                         Text("Retry")
@@ -180,23 +188,13 @@ private fun Items(
                 }
             }
 
-            ItemState.LoadedAll -> {
+            ItemState.LoadedAll, ItemState.Normal -> {
                 item(
                     key = "Bottom",
                     span = { GridItemSpan(maxLineSpan) },
                     contentType = "Spacer",
                 ) {
-                    Spacer(Modifier.height(16.dp))
-                }
-            }
-
-            ItemState.Normal -> {
-                item(
-                    key = "Bottom",
-                    span = { GridItemSpan(maxLineSpan) },
-                    contentType = "Spacer",
-                ) {
-                    Spacer(Modifier.height(16.dp))
+                    Spacer(Modifier.height(16.dp).animateItem())
                 }
             }
         }

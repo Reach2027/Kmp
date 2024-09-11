@@ -16,7 +16,6 @@
 
 package com.reach.kmp.feature.data.bingwallpaper
 
-import com.reach.kmp.data.base.common.Result
 import com.reach.kmp.data.base.common.flowResult
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import com.reach.kmp.feature.data.bingwallpaper.source.BingWallpaperApi

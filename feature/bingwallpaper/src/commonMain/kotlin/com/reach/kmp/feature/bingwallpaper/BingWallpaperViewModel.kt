@@ -19,16 +19,12 @@ package com.reach.kmp.feature.bingwallpaper
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
-import com.reach.kmp.data.base.common.Result
 import com.reach.kmp.data.core.common.RTAG
 import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-
-private const val DELAY = 1000L
 
 internal class BingWallpaperViewModel(
     private val repo: BingWallpaperRepo,
@@ -43,16 +39,17 @@ internal class BingWallpaperViewModel(
 
     fun loadFirstPage() {
         viewModelScope.launch {
+            _uiState.emit(UiState.Loading)
             repo.getWallpapers(0).collect { res ->
-                val state = when (res) {
-                    Result.Loading -> UiState.Loading
-                    is Result.Error -> UiState.Error(res.exception.toString())
-                    is Result.Success -> UiState.Items(
-                        items = res.data,
-                        itemsState = ItemState.Normal,
-                    )
-                }
-                if (res is Result.Success) delay(DELAY)
+                val state = res.fold(
+                    onSuccess = {
+                        UiState.Items(
+                            items = it,
+                            itemsState = ItemState.Normal,
+                        )
+                    },
+                    onFailure = { UiState.Error(it.toString()) },
+                )
                 _uiState.emit(state)
             }
         }
@@ -64,21 +61,20 @@ internal class BingWallpaperViewModel(
             return
         }
         viewModelScope.launch {
+            _uiState.emit(currentState.copy(itemsState = ItemState.LoadingMore))
             repo.getWallpapers(1).collect { res ->
-                val state = when (res) {
-                    Result.Loading -> currentState.copy(itemsState = ItemState.LoadingMore)
-                    is Result.Error ->
-                        currentState.copy(itemsState = ItemState.LoadMoreError(res.exception.toString()))
-
-                    is Result.Success -> currentState.copy(
-                        items = buildList {
-                            addAll(currentState.items)
-                            addAll(res.data)
-                        },
-                        itemsState = ItemState.LoadedAll,
-                    )
-                }
-                if (res is Result.Success) delay(DELAY)
+                val state = res.fold(
+                    onSuccess = { data ->
+                        currentState.copy(
+                            items = buildList {
+                                addAll(currentState.items)
+                                addAll(data)
+                            },
+                            itemsState = ItemState.LoadedAll,
+                        )
+                    },
+                    onFailure = { currentState.copy(itemsState = ItemState.LoadMoreError(it.toString())) },
+                )
                 _uiState.emit(state)
                 Logger.e(RTAG) { "loadNextPage: ${state.itemsState}" }
             }

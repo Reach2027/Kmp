@@ -1,31 +1,31 @@
 [versions]
-composePlugin = "1.7.0-alpha03"
+composePlugin = "1.7.0-beta02"
 kotlin = "2.0.20"
 
 kotlinxCoroutines = "1.9.0-RC.2"
-kotlinxSerialization = "1.7.1"
+kotlinxSerialization = "1.7.2"
 kotlinxDatetime = "0.6.1"
-kotlinxImmutable = "0.3.7"
+kotlinxImmutable = "0.3.8"
 kotlinxIo = "0.5.3"
 
-ktor = "3.0.0-beta-2"
+ktor = "3.0.0-rc-1"
 
-composeBundle = "1.0.0"
-composeNavigation = "2.8.0-alpha09"
-composeLifecycle = "2.8.0"
+composeBundle = "1.0.1"
+composeNavigation = "2.8.0-alpha10"
+composeLifecycle = "2.8.2"
 
-androidxAnnotation = "1.8.1"
+androidxAnnotation = "1.8.2"
 androidxCollection = "1.4.3"
 androidxPaging = "3.3.2"
 androidxDataStore = "1.1.1"
 
-koin = "4.0.0-RC1"
+koin = "4.0.0-RC2"
 
 coil = "3.0.0-alpha10"
 
 okio = "3.9.0"
 
-haze = "0.7.3"
+haze = "0.9.0-beta01"
 
 kermit = "2.0.4"
 
@@ -34,7 +34,7 @@ agp = "8.5.2"
 androidCompileSdk = "35"
 androidMinSdk = "24"
 androidTargetSdk = "35"
-androidxActivityCompose = "1.9.1"
+androidxActivityCompose = "1.9.2"
 
 [libraries]
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
@@ -84,6 +84,7 @@ androidx-datastore = { group = "androidx.datastore", name = "datastore", version
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+koin-compose-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 
 coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }

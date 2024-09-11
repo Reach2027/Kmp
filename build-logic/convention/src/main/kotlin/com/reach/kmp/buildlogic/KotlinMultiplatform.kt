@@ -4,11 +4,11 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
-    isLibrary: Boolean = true
+    isLibrary: Boolean = true,
 ) = extension.apply {
 
     jvmToolchain(17)
@@ -25,8 +25,23 @@ internal fun Project.configureKotlinMultiplatform(
         iosArm64()
         iosSimulatorArm64()
 
-        @OptIn(ExperimentalWasmDsl::class)
-        wasmJs()
+        @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+        wasmJs {
+            moduleName = "composeApp"
+            browser {
+                commonWebpackConfig {
+                    outputFileName = "composeApp.js"
+                    devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                        static = (static ?: mutableListOf()).apply {
+                            // Serve sources to debug inside browser
+                            add(project.projectDir.path)
+                        }
+                        open = true
+                        port = 8081
+                    }
+                }
+            }
+        }
 
         jvm("desktop")
     }

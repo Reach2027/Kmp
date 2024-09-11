@@ -32,19 +32,24 @@ import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
 import org.koin.compose.KoinApplication
+import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
 @Composable
 fun App(
     navController: NavHostController = rememberNavController(),
 ) {
-    KoinApplication(application = { modules(appModule) }) {
+    KoinApplication(application = { configureKoin() }) {
         MaterialTheme {
             Surface(modifier = Modifier.fillMaxSize()) {
                 AppNavHost(navController)
             }
         }
     }
+}
+
+fun configureKoin() = koinApplication {
+    modules(appModule)
 }
 
 private val appModule = module {
