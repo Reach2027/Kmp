@@ -2,7 +2,7 @@
 composePlugin = "1.7.0-beta02"
 kotlin = "2.0.20"
 
-kotlinxCoroutines = "1.9.0-RC.2"
+kotlinxCoroutines = "1.9.0"
 kotlinxSerialization = "1.7.2"
 kotlinxDatetime = "0.6.1"
 kotlinxImmutable = "0.3.8"
@@ -19,11 +19,11 @@ androidxCollection = "1.4.3"
 androidxPaging = "3.3.2"
 androidxDataStore = "1.1.1"
 
-koin = "4.0.0-RC2"
+koin = "4.0.0"
 
 coil = "3.0.0-alpha10"
 
-okio = "3.9.0"
+okio = "3.9.1"
 
 haze = "0.9.0-beta01"
 
@@ -82,8 +82,8 @@ androidx-paging-test = { group = "androidx.paging", name = "paging-testing", ver
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-core-coroutines = { group = "io.insert-koin", name = "koin-core-coroutines", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
-koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-compose-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 

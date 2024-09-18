@@ -27,7 +27,6 @@ class ApplicationPlugin : Plugin<Project> {
             sourceSets.apply {
                 commonMain {
                     dependencies {
-                        implementation(libs, "koin-core")
                         implementation(libs, "koin-compose")
                         implementation(libs, "koin-compose-navigation")
                     }

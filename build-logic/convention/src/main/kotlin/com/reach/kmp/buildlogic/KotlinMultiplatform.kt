@@ -27,20 +27,8 @@ internal fun Project.configureKotlinMultiplatform(
 
         @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
         wasmJs {
-            moduleName = "composeApp"
-            browser {
-                commonWebpackConfig {
-                    outputFileName = "composeApp.js"
-                    devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                        static = (static ?: mutableListOf()).apply {
-                            // Serve sources to debug inside browser
-                            add(project.projectDir.path)
-                        }
-                        open = true
-                        port = 8081
-                    }
-                }
-            }
+            nodejs()
+            binaries.executable()
         }
 
         jvm("desktop")
@@ -52,7 +40,9 @@ internal fun Project.configureKotlinMultiplatform(
         commonMain {
             dependencies {
                 implementation(libs, "kotlinx-coroutines-core")
+
                 implementation(libs, "koin-core")
+//                implementation(libs, "koin-core-coroutines")
 
                 implementation(libs, "kermit")
 

@@ -32,7 +32,6 @@ class FeatureModulePlugin : Plugin<Project> {
                         implementation(project(":ui-core:common"))
                         implementation(project(":ui-base:common"))
 
-                        implementation(libs, "koin-core")
                         implementation(libs, "koin-compose")
                         implementation(libs, "koin-compose-navigation")
                     }
