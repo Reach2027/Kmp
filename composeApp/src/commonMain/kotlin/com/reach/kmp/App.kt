@@ -31,14 +31,16 @@ import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
+import kotlinx.coroutines.Dispatchers
 import org.koin.compose.KoinApplication
-import org.koin.dsl.module
+import org.koin.core.lazyModules
+import org.koin.dsl.lazyModule
 
 @Composable
 fun App(
     navController: NavHostController = rememberNavController(),
 ) {
-    KoinApplication(application = { modules(appModule) }) {
+    KoinApplication(application = { lazyModules(appModule, dispatcher = Dispatchers.Default) }) {
         MaterialTheme {
             Surface(modifier = Modifier.fillMaxSize()) {
                 AppNavHost(navController)
@@ -47,7 +49,7 @@ fun App(
     }
 }
 
-private val appModule = module {
+private val appModule = lazyModule {
     includes(bingWallpaperModule)
 }
 

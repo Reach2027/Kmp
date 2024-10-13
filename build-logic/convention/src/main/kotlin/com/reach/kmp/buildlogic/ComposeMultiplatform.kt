@@ -25,8 +25,6 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(composeDeps.runtime)
                 implementation(composeDeps.runtimeSaveable)
 
-                implementation(libs, "core-bundle")
-
                 implementation(libs, "lifecycle-common")
                 implementation(libs, "lifecycle-runtime")
                 implementation(libs, "lifecycle-viewmodel")

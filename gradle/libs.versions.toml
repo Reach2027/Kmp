@@ -1,31 +1,31 @@
 [versions]
-composePlugin = "1.7.0-beta02"
-kotlin = "2.0.20"
+composePlugin = "1.7.0-rc01"
+kotlin = "2.0.21"
 
 kotlinxCoroutines = "1.9.0"
-kotlinxSerialization = "1.7.2"
+kotlinxSerialization = "1.7.3"
 kotlinxDatetime = "0.6.1"
 kotlinxImmutable = "0.3.8"
-kotlinxIo = "0.5.3"
+kotlinxIo = "0.5.4"
 
-ktor = "3.0.0-rc-1"
+ktor = "3.0.0"
 
-composeBundle = "1.0.1"
 composeNavigation = "2.8.0-alpha10"
 composeLifecycle = "2.8.2"
+material3Adaptive = "1.0.0-rc01"
 
 androidxAnnotation = "1.8.2"
-androidxCollection = "1.4.3"
+androidxCollection = "1.4.4"
 androidxPaging = "3.3.2"
 androidxDataStore = "1.1.1"
 
 koin = "4.0.0"
 
-coil = "3.0.0-alpha10"
+coil = "3.0.0-rc01"
 
 okio = "3.9.1"
 
-haze = "0.9.0-beta01"
+haze = "0.9.0-beta03"
 
 kermit = "2.0.4"
 
@@ -62,14 +62,16 @@ ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation"
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 
-core-bundle = { group = "org.jetbrains.androidx.core", name = "core-bundle", version.ref = "composeBundle" }
-
 navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 
 lifecycle-common = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-common", version.ref = "composeLifecycle" }
 lifecycle-runtime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "composeLifecycle" }
 lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeLifecycle" }
 lifecycle-viewmodel-savedstate = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "composeLifecycle" }
+
+material3-adaptive = { group = "org.jetbrains.compose.material3.adaptive", name = "adaptive", version.ref = "material3Adaptive" }
+material3-adaptive-layout = { group = "org.jetbrains.compose.material3.adaptive", name = "adaptive-layout", version.ref = "material3Adaptive" }
+material3-adaptive-navigation = { group = "org.jetbrains.compose.material3.adaptive", name = "adaptive-navigation", version.ref = "material3Adaptive" }
 
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidxAnnotation" }
 

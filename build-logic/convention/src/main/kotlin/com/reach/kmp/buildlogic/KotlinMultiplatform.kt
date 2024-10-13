@@ -25,11 +25,11 @@ internal fun Project.configureKotlinMultiplatform(
         iosArm64()
         iosSimulatorArm64()
 
-        @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
-        wasmJs {
-            nodejs()
-            binaries.executable()
-        }
+//        @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+//        wasmJs {
+//            nodejs()
+//            binaries.executable()
+//        }
 
         jvm("desktop")
     }
@@ -42,12 +42,12 @@ internal fun Project.configureKotlinMultiplatform(
                 implementation(libs, "kotlinx-coroutines-core")
 
                 implementation(libs, "koin-core")
-//                implementation(libs, "koin-core-coroutines")
+                implementation(libs, "koin-core-coroutines")
 
                 implementation(libs, "kermit")
 
-//                implementation(libs, "androidx-annotation")
-//                implementation(libs, "androidx-collection")
+                implementation(libs, "androidx-annotation")
+                implementation(libs, "androidx-collection")
             }
         }
 
