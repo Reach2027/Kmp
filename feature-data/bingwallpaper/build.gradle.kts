@@ -26,6 +26,8 @@ kotlin {
             implementation(libs.ktor.core)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
+
+            implementation(libs.androidx.paging.common)
         }
     }
 }

@@ -1,40 +1,40 @@
 [versions]
-composePlugin = "1.7.0-rc01"
-kotlin = "2.0.21"
+composePlugin = "1.7.3"
+kotlin = "2.1.0"
 
-kotlinxCoroutines = "1.9.0"
-kotlinxSerialization = "1.7.3"
+kotlinxCoroutines = "1.10.1"
+kotlinxSerialization = "1.8.0"
 kotlinxDatetime = "0.6.1"
 kotlinxImmutable = "0.3.8"
-kotlinxIo = "0.5.4"
+kotlinxIo = "0.6.0"
 
-ktor = "3.0.0"
+ktor = "3.0.2"
 
-composeNavigation = "2.8.0-alpha10"
-composeLifecycle = "2.8.2"
-material3Adaptive = "1.0.0-rc01"
+composeNavigation = "2.8.0-alpha11"
+composeLifecycle = "2.8.4"
+material3Adaptive = "1.0.1"
 
-androidxAnnotation = "1.8.2"
-androidxCollection = "1.4.4"
-androidxPaging = "3.3.2"
+androidxAnnotation = "1.9.1"
+androidxCollection = "1.4.5"
+androidxPaging = "3.3.5"
 androidxDataStore = "1.1.1"
 
-koin = "4.0.0"
+koin = "4.0.1"
 
-coil = "3.0.0-rc01"
+coil = "3.0.4"
 
-okio = "3.9.1"
+okio = "3.10.0"
 
-haze = "0.9.0-beta03"
+haze = "1.0.2"
 
-kermit = "2.0.4"
+kermit = "2.0.5"
 
 # Android
-agp = "8.5.2"
+agp = "8.7.3"
 androidCompileSdk = "35"
 androidMinSdk = "24"
 androidTargetSdk = "35"
-androidxActivityCompose = "1.9.2"
+androidxActivityCompose = "1.9.3"
 
 [libraries]
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }

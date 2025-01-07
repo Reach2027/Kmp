@@ -2,14 +2,14 @@ package com.reach.kmp.buildlogic
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureComposeMultiplatform(
     extension: KotlinMultiplatformExtension,
 ) = extension.apply {
 
-    val composeDeps = extensions.getByType<ComposeExtension>().dependencies
+    val composeDeps = extensions.getByType<ComposePlugin.Dependencies>()
 
     sourceSets.apply {
         commonMain {

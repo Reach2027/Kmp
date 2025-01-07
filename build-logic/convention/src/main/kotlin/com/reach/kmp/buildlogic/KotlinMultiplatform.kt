@@ -11,13 +11,13 @@ internal fun Project.configureKotlinMultiplatform(
     isLibrary: Boolean = true,
 ) = extension.apply {
 
-    jvmToolchain(17)
+    jvmToolchain(11)
 
     if (isLibrary) {
         androidTarget {
             @OptIn(ExperimentalKotlinGradlePluginApi::class)
             compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_17)
+                jvmTarget.set(JvmTarget.JVM_11)
             }
         }
 
