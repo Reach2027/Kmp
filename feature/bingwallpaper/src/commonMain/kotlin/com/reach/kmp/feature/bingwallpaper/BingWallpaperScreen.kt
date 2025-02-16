@@ -44,6 +44,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import co.touchlab.kermit.Logger
@@ -59,14 +60,15 @@ import org.koin.compose.viewmodel.koinNavViewModel
 @Serializable
 object RouteBingWallpaper
 
-fun NavGraphBuilder.bingWallpaperRoute() {
+fun NavGraphBuilder.bingWallpaperRoute(navController: NavController) {
     composable<RouteBingWallpaper> {
-        BingWallpaperRoute()
+        BingWallpaperRoute(navController)
     }
 }
 
 @Composable
 private fun BingWallpaperRoute(
+    navController: NavController,
     viewModel: BingWallpaperViewModel = koinNavViewModel(),
 ) {
     val uiState: UiState by viewModel.uiState.collectAsStateWithLifecycle()

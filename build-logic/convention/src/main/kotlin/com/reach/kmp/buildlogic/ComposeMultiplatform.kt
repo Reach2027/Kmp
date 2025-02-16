@@ -24,11 +24,16 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(composeDeps.components.uiToolingPreview)
                 implementation(composeDeps.runtime)
                 implementation(composeDeps.runtimeSaveable)
+                implementation(composeDeps.preview)
 
                 implementation(libs, "lifecycle-common")
                 implementation(libs, "lifecycle-runtime")
                 implementation(libs, "lifecycle-viewmodel")
                 implementation(libs, "lifecycle-viewmodel-savedstate")
+
+                implementation(libs, "material3-adaptive")
+                implementation(libs, "material3-adaptive-layout")
+                implementation(libs, "material3-adaptive-navigation")
 
                 implementation(libs, "navigation")
             }

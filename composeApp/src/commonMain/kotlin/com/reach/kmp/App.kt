@@ -24,45 +24,46 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.reach.kmp.feature.bingwallpaper.RouteBingWallpaper
 import com.reach.kmp.feature.bingwallpaper.bingWallpaperRoute
 import com.reach.kmp.feature.bingwallpaper.di.bingWallpaperModule
+import com.reach.kmp.feature.compose.screenSampleRoute
 import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
-import kotlinx.coroutines.Dispatchers
 import org.koin.compose.KoinApplication
-import org.koin.core.lazyModules
-import org.koin.dsl.lazyModule
+import org.koin.dsl.module
 
 @Composable
-fun App(
-    navController: NavHostController = rememberNavController(),
-) {
-    KoinApplication(application = { lazyModules(appModule, dispatcher = Dispatchers.Default) }) {
+fun App() {
+    KoinApplication(application = { modules(appModule) }) {
         MaterialTheme {
             Surface(modifier = Modifier.fillMaxSize()) {
-                AppNavHost(navController)
+                AppNavHost()
             }
         }
     }
 }
 
-private val appModule = lazyModule {
+private val appModule = module {
     includes(bingWallpaperModule)
 }
 
 @Composable
-private fun AppNavHost(navController: NavHostController) {
+private fun AppNavHost(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
-        startDestination = RouteBingWallpaper,
+        startDestination = RouteStart,
+        modifier = Modifier.fillMaxSize(),
         enterTransition = { enterScreenTransition() },
         exitTransition = { exitScreenTransition() },
         popEnterTransition = { popEnterScreenTransition() },
         popExitTransition = { popExitScreenTransition() },
     ) {
-        bingWallpaperRoute()
+        startRoute(navController)
+
+        bingWallpaperRoute(navController)
+
+        screenSampleRoute(navController)
     }
 }

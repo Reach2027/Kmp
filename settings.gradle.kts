@@ -30,6 +30,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":composeApp")
 
 include(":feature:bingwallpaper")
+include(":feature:compose")
 
 include(":ui-core:common")
 

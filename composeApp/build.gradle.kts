@@ -20,13 +20,14 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.application)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -66,6 +67,9 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.uiCore.common)
             implementation(projects.feature.bingwallpaper)
+            implementation(projects.feature.compose)
+
+            implementation(libs.kotlinx.serialization.core)
         }
 
         wasmJsMain.dependencies {
