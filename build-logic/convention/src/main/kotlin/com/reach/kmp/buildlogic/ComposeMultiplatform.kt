@@ -24,7 +24,6 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(composeDeps.components.uiToolingPreview)
                 implementation(composeDeps.runtime)
                 implementation(composeDeps.runtimeSaveable)
-                implementation(composeDeps.preview)
 
                 implementation(libs, "lifecycle-common")
                 implementation(libs, "lifecycle-runtime")
