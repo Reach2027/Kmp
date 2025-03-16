@@ -34,7 +34,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.reach.kmp.feature.bingwallpaper.RouteBingWallpaper
 import com.reach.kmp.feature.compose.RouteScreenSample
+import kmp.composeapp.generated.resources.Res
+import kmp.composeapp.generated.resources.bing_wallpaper
+import kmp.composeapp.generated.resources.screen_sample
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.stringResource
 
 @Serializable
 object RouteStart
@@ -63,14 +67,14 @@ private fun StartRoute(navController: NavController) {
                 modifier = Modifier.padding(horizontal = 32.dp),
                 onClick = { navController.navigate(RouteScreenSample) },
             ) {
-                Text(text = "Screen Sample")
+                Text(text = stringResource(resource = Res.string.screen_sample))
             }
 
             Button(
                 modifier = Modifier.padding(horizontal = 32.dp),
                 onClick = { navController.navigate(RouteBingWallpaper) },
             ) {
-                Text(text = "Bing Wallpaper")
+                Text(text = stringResource(resource = Res.string.bing_wallpaper))
             }
         }
     }

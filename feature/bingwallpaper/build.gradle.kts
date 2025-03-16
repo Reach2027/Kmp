@@ -27,6 +27,9 @@ kotlin {
 
             implementation(libs.coil)
             implementation(libs.coil.ktor)
+
+            implementation(libs.haze)
+            implementation(libs.haze.materials)
         }
     }
 }
