@@ -22,6 +22,7 @@ import com.reach.kmp.data.core.network.di.httpClientModule
 import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
 import com.reach.kmp.feature.data.bingwallpaper.DefaultBingWallpaperRepo
 import com.reach.kmp.feature.data.bingwallpaper.source.BingWallpaperApi
+import com.reach.kmp.feature.data.bingwallpaper.source.BingWallpaperPagingSource
 import com.reach.kmp.feature.data.bingwallpaper.source.DefaultBingWallpaperApi
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
@@ -35,8 +36,11 @@ val bingWallpaperDataModule = module {
         bind<BingWallpaperApi>()
     }
 
+    factoryOf(::BingWallpaperPagingSource)
+
     factory<BingWallpaperRepo> {
         DefaultBingWallpaperRepo(
+            get(),
             get(),
             get(qualifier(QualifierDispatchers.IO)),
         )

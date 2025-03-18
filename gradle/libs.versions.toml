@@ -81,6 +81,9 @@ androidx-paging-common = { group = "androidx.paging", name = "paging-common", ve
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging" }
 androidx-paging-test = { group = "androidx.paging", name = "paging-testing", version.ref = "androidxPaging" }
 
+paging-common = { group = "app.cash.paging", name = "paging-common", version = "3.3.0-alpha02-0.5.1" }
+paging-compose-common = { group = "app.cash.paging", name = "paging-compose-common", version = "3.3.0-alpha02-0.5.1" }
+
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }

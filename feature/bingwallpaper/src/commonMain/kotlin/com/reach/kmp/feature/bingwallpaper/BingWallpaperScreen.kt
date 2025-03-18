@@ -33,7 +33,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
@@ -47,10 +46,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,13 +54,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import co.touchlab.kermit.Logger
+import androidx.paging.LoadState
+import app.cash.paging.compose.LazyPagingItems
+import app.cash.paging.compose.collectAsLazyPagingItems
+import app.cash.paging.compose.itemKey
 import coil3.compose.AsyncImage
-import com.reach.kmp.data.core.common.RTAG
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import com.reach.kmp.ui.base.common.toDp
 import dev.chrisbanes.haze.HazeState
@@ -72,9 +69,6 @@ import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.materials.CupertinoMaterials
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -92,23 +86,22 @@ private fun BingWallpaperRoute(
     navController: NavController,
     viewModel: BingWallpaperViewModel = koinViewModel(),
 ) {
-    val uiState: UiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val pagingItems: LazyPagingItems<BingWallpaperModel> =
+        viewModel.wallpapers.collectAsLazyPagingItems()
 
     BingWallpaperScreen(
-        uiState = uiState,
+        pagingItems = pagingItems,
         onBackClick = { navController.navigateUp() },
-        onRetryClick = { viewModel.loadFirstPage() },
-        loadMore = { viewModel.loadNextPage() },
+        onRetryClick = { },
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BingWallpaperScreen(
-    uiState: UiState,
+    pagingItems: LazyPagingItems<BingWallpaperModel>,
     onBackClick: () -> Unit,
     onRetryClick: () -> Unit,
-    loadMore: () -> Unit,
 ) {
     val hazeState = remember { HazeState() }
 
@@ -119,11 +112,11 @@ private fun BingWallpaperScreen(
         hazeState = hazeState,
         scrollBehavior = scrollBehavior,
     ) {
-        when (uiState) {
-            UiState.Loading -> Loading()
-            is UiState.Error -> Error(uiState, onRetryClick)
-            is UiState.Items -> Items(uiState, hazeState, scrollBehavior, loadMore)
-        }
+        Wallpapers(
+            pagingItems = pagingItems,
+            hazeState = hazeState,
+            scrollBehavior = scrollBehavior,
+        )
     }
 }
 
@@ -162,6 +155,27 @@ private fun TitleBarWithBack(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun Wallpapers(
+    pagingItems: LazyPagingItems<BingWallpaperModel>,
+    hazeState: HazeState,
+    scrollBehavior: TopAppBarScrollBehavior,
+) {
+    val refreshState = pagingItems.loadState.refresh
+    when (refreshState) {
+        is LoadState.Error -> Error(refreshState.error.toString()) { }
+
+        LoadState.Loading -> Loading()
+
+        is LoadState.NotLoading -> WallpaperItems(
+            pagingItems = pagingItems,
+            hazeState = hazeState,
+            scrollBehavior = scrollBehavior,
+        )
+    }
+}
+
 @Composable
 private fun Loading() {
     Box(
@@ -174,7 +188,7 @@ private fun Loading() {
 
 @Composable
 private fun Error(
-    uiState: UiState.Error,
+    errorText: String,
     onRetryClick: () -> Unit,
 ) {
     Box(
@@ -182,7 +196,7 @@ private fun Error(
         contentAlignment = Alignment.Center,
     ) {
         Column {
-            Text(uiState.message)
+            Text(errorText)
             Button(onClick = onRetryClick) {
                 Text("Retry")
             }
@@ -192,32 +206,14 @@ private fun Error(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Items(
-    uiState: UiState.Items,
+private fun WallpaperItems(
+    pagingItems: LazyPagingItems<BingWallpaperModel>,
     hazeState: HazeState,
     scrollBehavior: TopAppBarScrollBehavior,
-    loadMore: () -> Unit,
 ) {
-    val gridState = rememberLazyGridState()
-
-    LaunchedEffect(gridState) {
-        delay(600L)
-        snapshotFlow {
-            val lastItem = gridState.layoutInfo.visibleItemsInfo.last()
-            Logger.e(RTAG) { "lastIndex: ${lastItem.index}" }
-            lastItem.index > 5
-        }.map { checkLoad ->
-            if (checkLoad) uiState.itemsState == ItemState.Normal else false
-        }.distinctUntilChanged()
-            .collect { needLoad ->
-                Logger.e(RTAG) { "needLoad: $needLoad" }
-                if (needLoad) loadMore()
-            }
-    }
-
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 390.dp),
-        state = gridState,
+        state = rememberLazyGridState(),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -242,59 +238,17 @@ private fun Items(
         }
 
         items(
-            items = uiState.items,
-            key = { item -> item.imageUrl },
-            contentType = { "Items" },
-        ) { item -> Item(model = item) }
-
-        when (uiState.itemsState) {
-            ItemState.LoadingMore -> item(
-                key = "LoadingMore",
-                span = { GridItemSpan(maxLineSpan) },
-                contentType = "LoadingMore",
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxWidth()
-                        .height(100.dp)
-                        .animateItem(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    CircularProgressIndicator()
-                }
-            }
-
-            is ItemState.LoadMoreError -> item(
-                key = "LoadMoreError",
-                span = { GridItemSpan(maxLineSpan) },
-                contentType = "LoadMoreError",
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxWidth()
-                        .height(100.dp)
-                        .animateItem(),
-                ) {
-                    Text(uiState.itemsState.message)
-                    Button(onClick = loadMore) {
-                        Text("Retry")
-                    }
-                }
-            }
-
-            ItemState.LoadedAll, ItemState.Normal -> {
-                item(
-                    key = "Bottom",
-                    span = { GridItemSpan(maxLineSpan) },
-                    contentType = "Spacer",
-                ) {
-                    Spacer(Modifier.height(16.dp).animateItem())
-                }
-            }
+            count = pagingItems.itemCount,
+            key = pagingItems.itemKey { it.imageUrl },
+        ) { index ->
+            BingWallpaperItem(pagingItems[index])
         }
     }
 }
 
 @Composable
-private fun LazyGridItemScope.Item(model: BingWallpaperModel) {
+private fun LazyGridItemScope.BingWallpaperItem(model: BingWallpaperModel?) {
+    if (model == null) return
     AsyncImage(
         model = model.imageUrl,
         contentDescription = "",

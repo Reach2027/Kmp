@@ -30,6 +30,8 @@ kotlin {
 
             implementation(libs.haze)
             implementation(libs.haze.materials)
+
+            implementation(libs.paging.compose.common)
         }
     }
 }

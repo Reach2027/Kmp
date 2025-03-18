@@ -34,9 +34,9 @@ kotlin {
             implementation(libs.ktor.darwin)
         }
 
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.js)
-        }
+//        wasmJsMain.dependencies {
+//            implementation(libs.ktor.js)
+//        }
 
         val desktopMain by getting
         desktopMain.dependencies {

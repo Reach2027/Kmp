@@ -72,9 +72,9 @@ kotlin {
             implementation(libs.kotlinx.serialization.core)
         }
 
-        wasmJsMain.dependencies {
-            implementation(npm("@js-joda/timezone", "2.3.0"))
-        }
+//        wasmJsMain.dependencies {
+//            implementation(npm("@js-joda/timezone", "2.3.0"))
+//        }
 
         val desktopMain by getting
         desktopMain.dependencies {

@@ -18,66 +18,17 @@ package com.reach.kmp.feature.bingwallpaper
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.touchlab.kermit.Logger
-import com.reach.kmp.data.core.common.RTAG
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
+import kotlinx.coroutines.flow.Flow
 
 internal class BingWallpaperViewModel(
-    private val repo: BingWallpaperRepo,
+    repo: BingWallpaperRepo,
 ) : ViewModel() {
 
-    private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Loading)
-    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
-
-    init {
-        loadFirstPage()
-    }
-
-    fun loadFirstPage() {
-        viewModelScope.launch {
-            _uiState.emit(UiState.Loading)
-            repo.getWallpapers(0).collect { res ->
-                val state = res.fold(
-                    onSuccess = {
-                        UiState.Items(
-                            items = it,
-                            itemsState = ItemState.Normal,
-                        )
-                    },
-                    onFailure = { UiState.Error(it.toString()) },
-                )
-                _uiState.emit(state)
-            }
-        }
-    }
-
-    fun loadNextPage() {
-        val currentState = _uiState.value
-        if (currentState !is UiState.Items || currentState.itemsState == ItemState.LoadedAll) {
-            return
-        }
-        viewModelScope.launch {
-            _uiState.emit(currentState.copy(itemsState = ItemState.LoadingMore))
-            repo.getWallpapers(1).collect { res ->
-                val state = res.fold(
-                    onSuccess = { data ->
-                        currentState.copy(
-                            items = buildList {
-                                addAll(currentState.items)
-                                addAll(data)
-                            },
-                            itemsState = ItemState.LoadedAll,
-                        )
-                    },
-                    onFailure = { currentState.copy(itemsState = ItemState.LoadMoreError(it.toString())) },
-                )
-                _uiState.emit(state)
-                Logger.e(RTAG) { "loadNextPage: ${state.itemsState}" }
-            }
-        }
-    }
+    val wallpapers: Flow<PagingData<BingWallpaperModel>> =
+        repo.getWallpapers()
+            .cachedIn(viewModelScope)
 }
