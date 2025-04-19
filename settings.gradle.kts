@@ -2,10 +2,11 @@
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        // Compose multiplatform
+        // Compose multiplatform dev
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         // google and mavenCentral
         maven("https://mirrors.tencent.com/nexus/repository/maven-public/")
+        // gradle plugin
         maven("https://mirrors.tencent.com/nexus/repository/gradle-plugins/")
         google()
         mavenCentral()
@@ -15,9 +16,10 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        // Compose multiplatform
+        // Compose multiplatform dev
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://mirrors.tencent.com/nexus/repository/maven-public/") // google and mavenCentral
+        // google and mavenCentral
+        maven("https://mirrors.tencent.com/nexus/repository/maven-public/")
         google()
         mavenCentral()
     }

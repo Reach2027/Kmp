@@ -27,35 +27,35 @@ tasks {
 
 gradlePlugin {
     plugins {
-        register("ApplicationPlugin"){
+        register("ApplicationPlugin") {
             id = "com.reach.kmp.application"
             implementationClass = "ApplicationPlugin"
         }
 
-        register("FeatureModulePlugin"){
+        register("FeatureModulePlugin") {
             id = "com.reach.kmp.feature.module"
             implementationClass = "FeatureModulePlugin"
         }
 
-        register("FeatureDataModulePlugin"){
+        register("FeatureDataModulePlugin") {
             id = "com.reach.kmp.feature.data.module"
             implementationClass = "FeatureDataModulePlugin"
         }
 
-        register("UiCoreModulePlugin"){
+        register("UiCoreModulePlugin") {
             id = "com.reach.kmp.ui.core.module"
             implementationClass = "UiCoreModulePlugin"
         }
-        register("UiBaseModulePlugin"){
+        register("UiBaseModulePlugin") {
             id = "com.reach.kmp.ui.base.module"
             implementationClass = "UiBaseModulePlugin"
         }
 
-        register("DataCoreModulePlugin"){
+        register("DataCoreModulePlugin") {
             id = "com.reach.kmp.data.core.module"
             implementationClass = "DataCoreModulePlugin"
         }
-        register("DataBaseModulePlugin"){
+        register("DataBaseModulePlugin") {
             id = "com.reach.kmp.data.base.module"
             implementationClass = "DataBaseModulePlugin"
         }

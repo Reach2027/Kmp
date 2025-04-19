@@ -36,10 +36,6 @@ internal fun Project.configureComposeMultiplatform(
 
                 implementation(libs, "navigation")
             }
-
-            androidMain.dependencies {
-                implementation(composeDeps.preview)
-            }
         }
     }
 

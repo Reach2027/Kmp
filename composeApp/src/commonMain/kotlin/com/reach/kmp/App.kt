@@ -16,9 +16,12 @@
 
 package com.reach.kmp
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -36,10 +39,19 @@ import org.koin.dsl.module
 
 @Composable
 fun App() {
-    KoinApplication(application = { modules(appModule) }) {
-        MaterialTheme {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                AppNavHost()
+    val colorScheme = if (isSystemInDarkTheme()) {
+        darkColorScheme()
+    } else {
+        lightColorScheme()
+    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+    ) {
+        KoinApplication(application = { modules(appModule) }) {
+            MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    AppNavHost()
+                }
             }
         }
     }

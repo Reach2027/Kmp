@@ -21,10 +21,12 @@ internal fun Project.configureKotlinMultiplatform(
             }
         }
 
+        // iOS
         iosX64()
         iosArm64()
         iosSimulatorArm64()
 
+        // wasm
 //        @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
 //        wasmJs {
 //            nodejs()
@@ -33,8 +35,6 @@ internal fun Project.configureKotlinMultiplatform(
 
         jvm("desktop")
     }
-
-    applyDefaultHierarchyTemplate()
 
     sourceSets.apply {
         commonMain {
