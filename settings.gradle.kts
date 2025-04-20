@@ -1,4 +1,3 @@
-
 pluginManagement {
     includeBuild("build-logic")
     repositories {
@@ -29,7 +28,9 @@ rootProject.name = "Kmp"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":composeApp")
+include(":androidApp")
+
+include(":shared")
 
 include(":feature:bingwallpaper")
 include(":feature:compose")

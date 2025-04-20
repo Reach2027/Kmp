@@ -26,12 +26,10 @@ import kotlinx.coroutines.flow.map
 inline fun <T> flowResult(
     dispatcher: CoroutineDispatcher,
     crossinline block: suspend () -> T,
-): Flow<Result<T>> =
-    flow {
-        emit(block())
-    }.asResult()
-        .flowOn(dispatcher)
+): Flow<Result<T>> = flow {
+    emit(block())
+}.asResult()
+    .flowOn(dispatcher)
 
-inline fun <T> Flow<T>.asResult(): Flow<Result<T>> =
-    map { Result.success(it) }
-        .catch { emit(Result.failure(it)) }
+inline fun <T> Flow<T>.asResult(): Flow<Result<T>> = map { Result.success(it) }
+    .catch { emit(Result.failure(it)) }

@@ -1,4 +1,4 @@
-import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.LibraryExtension
 import com.reach.kmp.buildlogic.configureAndroid
 import com.reach.kmp.buildlogic.configureComposeMultiplatform
 import com.reach.kmp.buildlogic.configureKotlinMultiplatform
@@ -8,19 +8,24 @@ import com.reach.kmp.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import kotlin.text.set
 
-class ApplicationPlugin : Plugin<Project> {
+class SharedModulePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(getPluginId("kotlinMultiplatform"))
             apply(getPluginId("composeMultiplatform"))
             apply(getPluginId("composeCompiler"))
 
-            apply(getPluginId("androidApplication"))
+            apply(getPluginId("androidLibrary"))
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
+            configureKotlinTarget()
+
             configureKotlinMultiplatform(this, false)
             configureComposeMultiplatform(this)
 
@@ -38,12 +43,28 @@ class ApplicationPlugin : Plugin<Project> {
             }
         }
 
-        extensions.configure<ApplicationExtension> {
-            configureAndroid(this)
+        extensions.configure<LibraryExtension>(::configureAndroid)
+    }
 
-            buildFeatures {
-                compose = true
+    private fun KotlinMultiplatformExtension.configureKotlinTarget() {
+        androidTarget {
+            @OptIn(ExperimentalKotlinGradlePluginApi::class)
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_21)
             }
         }
+
+        listOf(
+            iosX64(),
+            iosArm64(),
+            iosSimulatorArm64(),
+        ).forEach { iosTarget ->
+            iosTarget.binaries.framework {
+                baseName = "ComposeApp"
+                isStatic = true
+            }
+        }
+
+        jvm("desktop")
     }
 }

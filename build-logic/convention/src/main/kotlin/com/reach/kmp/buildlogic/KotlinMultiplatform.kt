@@ -4,16 +4,15 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
-    isLibrary: Boolean = true,
+    configureKotlinTarget: Boolean = true,
 ) = extension.apply {
 
     jvmToolchain(21)
 
-    if (isLibrary) {
+    if (configureKotlinTarget) {
         androidTarget {
             @OptIn(ExperimentalKotlinGradlePluginApi::class)
             compilerOptions {
@@ -33,7 +32,7 @@ internal fun Project.configureKotlinMultiplatform(
 //            binaries.executable()
 //        }
 
-        jvm("desktop")
+        jvm()
     }
 
     sourceSets.apply {

@@ -24,11 +24,10 @@ internal class BingWallpaperPagingSource(
     private val api: BingWallpaperApi,
 ) : PagingSource<Int, BingWallpaperModel>() {
 
-    override fun getRefreshKey(state: PagingState<Int, BingWallpaperModel>): Int? =
-        state.anchorPosition?.let { position ->
-            val anchorPage = state.closestPageToPosition(position)
-            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-        }
+    override fun getRefreshKey(state: PagingState<Int, BingWallpaperModel>): Int? = state.anchorPosition?.let { position ->
+        val anchorPage = state.closestPageToPosition(position)
+        anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+    }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BingWallpaperModel> = try {
         val currentPage = params.key ?: 0

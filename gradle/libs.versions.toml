@@ -25,7 +25,7 @@ coil = "3.1.0"
 
 okio = "3.11.0"
 
-haze = "1.5.3"
+haze = "1.5.4"
 
 kermit = "2.0.5"
 
@@ -118,12 +118,13 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 # Android
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
-application = { id = "com.reach.kmp.application", version = "unspecified" }
+sharedModule = { id = "com.reach.kmp.shared", version = "unspecified" }
 
-featureModule = { id = "com.reach.kmp.feature.module", version = "unspecified" }
-featureDataModule = { id = "com.reach.kmp.feature.data.module", version = "unspecified" }
-uiCoreModule = { id = "com.reach.kmp.ui.core.module", version = "unspecified" }
-uiBaseModule = { id = "com.reach.kmp.ui.base.module", version = "unspecified" }
-dataCoreModule = { id = "com.reach.kmp.data.core.module", version = "unspecified" }
-dataBaseModule = { id = "com.reach.kmp.data.base.module", version = "unspecified" }
+featureModule = { id = "com.reach.kmp.feature", version = "unspecified" }
+featureDataModule = { id = "com.reach.kmp.feature.data", version = "unspecified" }
+uiCoreModule = { id = "com.reach.kmp.ui.core", version = "unspecified" }
+uiBaseModule = { id = "com.reach.kmp.ui.base", version = "unspecified" }
+dataCoreModule = { id = "com.reach.kmp.data.core", version = "unspecified" }
+dataBaseModule = { id = "com.reach.kmp.data.base", version = "unspecified" }

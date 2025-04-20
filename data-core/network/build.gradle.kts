@@ -38,8 +38,7 @@ kotlin {
 //            implementation(libs.ktor.js)
 //        }
 
-        val desktopMain by getting
-        desktopMain.dependencies {
+        jvmMain.dependencies {
             implementation(libs.ktor.okhttp)
         }
     }

@@ -39,14 +39,12 @@ internal class DefaultBingWallpaperRepo(
     private val dispatcher: CoroutineDispatcher,
 ) : BingWallpaperRepo {
 
-    override fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>> =
-        flowResult(dispatcher) {
-            api.getBingWallpapers(0, 1)
-                .images[0]
-        }
+    override fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>> = flowResult(dispatcher) {
+        api.getBingWallpapers(0, 1)
+            .images[0]
+    }
 
-    override fun getWallpapers(): Flow<PagingData<BingWallpaperModel>> =
-        Pager(config = PagingConfig(pageSize = 7)) {
-            pagingSource
-        }.flow
+    override fun getWallpapers(): Flow<PagingData<BingWallpaperModel>> = Pager(config = PagingConfig(pageSize = 7)) {
+        pagingSource
+    }.flow
 }

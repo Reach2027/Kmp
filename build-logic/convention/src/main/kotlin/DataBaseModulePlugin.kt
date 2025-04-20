@@ -7,9 +7,9 @@ import com.reach.kmp.buildlogic.configureAndroid
 import com.reach.kmp.buildlogic.configureKotlinMultiplatform
 import com.reach.kmp.buildlogic.getPluginId
 
-class DataBaseModulePlugin: Plugin<Project> {
+class DataBaseModulePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-        with(pluginManager){
+        with(pluginManager) {
             apply(getPluginId("kotlinMultiplatform"))
 
             apply(getPluginId("androidLibrary"))

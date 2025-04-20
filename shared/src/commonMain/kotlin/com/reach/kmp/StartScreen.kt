@@ -34,9 +34,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.reach.kmp.feature.bingwallpaper.RouteBingWallpaper
 import com.reach.kmp.feature.compose.RouteScreenSample
-import kmp.composeapp.generated.resources.Res
-import kmp.composeapp.generated.resources.bing_wallpaper
-import kmp.composeapp.generated.resources.screen_sample
+import kmp.shared.generated.resources.Res
+import kmp.shared.generated.resources.bing_wallpaper
+import kmp.shared.generated.resources.screen_sample
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.stringResource
 
