@@ -7,12 +7,32 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension,
-    configureKotlinTarget: Boolean = true,
+    isConfigureEntry: Boolean = false,
 ) = extension.apply {
 
     jvmToolchain(21)
 
-    if (configureKotlinTarget) {
+    if (isConfigureEntry) {
+        androidTarget {
+            @OptIn(ExperimentalKotlinGradlePluginApi::class)
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_21)
+            }
+        }
+
+        listOf(
+            iosX64(),
+            iosArm64(),
+            iosSimulatorArm64(),
+        ).forEach { iosTarget ->
+            iosTarget.binaries.framework {
+                baseName = "ComposeApp"
+                isStatic = true
+            }
+        }
+
+        jvm("desktop")
+    } else {
         androidTarget {
             @OptIn(ExperimentalKotlinGradlePluginApi::class)
             compilerOptions {

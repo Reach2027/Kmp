@@ -24,9 +24,7 @@ class SharedModulePlugin : Plugin<Project> {
         }
 
         extensions.configure<KotlinMultiplatformExtension> {
-            configureKotlinTarget()
-
-            configureKotlinMultiplatform(this, false)
+            configureKotlinMultiplatform(this, true)
             configureComposeMultiplatform(this)
 
             sourceSets.apply {
@@ -44,27 +42,5 @@ class SharedModulePlugin : Plugin<Project> {
         }
 
         extensions.configure<LibraryExtension>(::configureAndroid)
-    }
-
-    private fun KotlinMultiplatformExtension.configureKotlinTarget() {
-        androidTarget {
-            @OptIn(ExperimentalKotlinGradlePluginApi::class)
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_21)
-            }
-        }
-
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64(),
-        ).forEach { iosTarget ->
-            iosTarget.binaries.framework {
-                baseName = "ComposeApp"
-                isStatic = true
-            }
-        }
-
-        jvm("desktop")
     }
 }

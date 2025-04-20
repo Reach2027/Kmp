@@ -27,6 +27,7 @@ class FeatureDataModulePlugin : Plugin<Project> {
                 }
             }
         }
+
         extensions.configure<LibraryExtension>(::configureAndroid)
     }
 }
