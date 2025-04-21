@@ -21,12 +21,13 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.reach.kmp.App
 
-fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        state = rememberWindowState(size = DpSize(960.dp, 800.dp)),
-        title = "Kotlin Multiplatform",
-    ) {
-        App()
+fun main() =
+    application {
+        Window(
+            onCloseRequest = ::exitApplication,
+            state = rememberWindowState(size = DpSize(960.dp, 800.dp)),
+            title = "Kotlin Multiplatform",
+        ) {
+            App()
+        }
     }
-}

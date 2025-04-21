@@ -39,11 +39,12 @@ import org.koin.dsl.module
 
 @Composable
 fun App() {
-    val colorScheme = if (isSystemInDarkTheme()) {
-        darkColorScheme()
-    } else {
-        lightColorScheme()
-    }
+    val colorScheme =
+        if (isSystemInDarkTheme()) {
+            darkColorScheme()
+        } else {
+            lightColorScheme()
+        }
     MaterialTheme(
         colorScheme = colorScheme,
     ) {
@@ -57,9 +58,10 @@ fun App() {
     }
 }
 
-private val appModule = module {
-    includes(bingWallpaperModule)
-}
+private val appModule =
+    module {
+        includes(bingWallpaperModule)
+    }
 
 @Composable
 private fun AppNavHost(navController: NavHostController = rememberNavController()) {

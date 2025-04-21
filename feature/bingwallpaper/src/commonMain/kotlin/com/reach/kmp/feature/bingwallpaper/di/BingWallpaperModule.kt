@@ -21,8 +21,9 @@ import com.reach.kmp.feature.data.bingwallpaper.di.bingWallpaperDataModule
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
-val bingWallpaperModule = module {
-    includes(bingWallpaperDataModule)
+val bingWallpaperModule =
+    module {
+        includes(bingWallpaperDataModule)
 
-    viewModelOf(::BingWallpaperViewModel)
-}
+        viewModelOf(::BingWallpaperViewModel)
+    }

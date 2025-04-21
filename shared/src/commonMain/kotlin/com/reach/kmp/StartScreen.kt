@@ -54,13 +54,16 @@ fun NavGraphBuilder.startRoute(navController: NavController) {
 private fun StartRoute(navController: NavController) {
     Surface(modifier = Modifier.fillMaxSize()) {
         FlowRow(
-            modifier = Modifier.fillMaxWidth()
-                .padding(top = 32.dp)
-                .padding(horizontal = 32.dp),
-            horizontalArrangement = Arrangement.spacedBy(
-                space = 32.dp,
-                alignment = Alignment.CenterHorizontally,
-            ),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 32.dp)
+                    .padding(horizontal = 32.dp),
+            horizontalArrangement =
+                Arrangement.spacedBy(
+                    space = 32.dp,
+                    alignment = Alignment.CenterHorizontally,
+                ),
             verticalArrangement = Arrangement.spacedBy(32.dp),
         ) {
             Button(

@@ -21,12 +21,21 @@ plugins {
 
 android {
     namespace = "com.reach.kmp"
-    compileSdk = libs.versions.androidCompileSdk.get().toInt()
+    compileSdk =
+        libs.versions.androidCompileSdk
+            .get()
+            .toInt()
 
     defaultConfig {
         applicationId = "com.reach.kmp"
-        minSdk = libs.versions.androidMinSdk.get().toInt()
-        targetSdk = libs.versions.androidTargetSdk.get().toInt()
+        minSdk =
+            libs.versions.androidMinSdk
+                .get()
+                .toInt()
+        targetSdk =
+            libs.versions.androidTargetSdk
+                .get()
+                .toInt()
         versionCode = 1
         versionName = "0.0.1-alpha"
     }
@@ -65,7 +74,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_21.toString()
     }
-
 }
 
 dependencies {

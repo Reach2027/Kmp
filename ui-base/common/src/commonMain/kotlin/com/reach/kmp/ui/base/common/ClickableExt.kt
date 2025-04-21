@@ -30,13 +30,14 @@ fun Modifier.clickableNoVisualEffect(
     role: Role? = null,
     onClick: () -> Unit,
 ) = composed(
-    inspectorInfo = debugInspectorInfo {
-        name = "clickable"
-        properties["enabled"] = enabled
-        properties["onClickLabel"] = onClickLabel
-        properties["role"] = role
-        properties["onClick"] = onClick
-    },
+    inspectorInfo =
+        debugInspectorInfo {
+            name = "clickable"
+            properties["enabled"] = enabled
+            properties["onClickLabel"] = onClickLabel
+            properties["role"] = role
+            properties["onClick"] = onClick
+        },
 ) {
     Modifier.clickable(
         enabled = enabled,

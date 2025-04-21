@@ -29,6 +29,8 @@ haze = "1.5.4"
 
 kermit = "2.0.5"
 
+ktlintPlugin = "12.2.0"
+
 # Android
 agp = "8.9.1"
 androidCompileSdk = "35"
@@ -114,6 +116,7 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktlintPlugin = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintPlugin" }
 
 # Android
 androidApplication = { id = "com.android.application", version.ref = "agp" }

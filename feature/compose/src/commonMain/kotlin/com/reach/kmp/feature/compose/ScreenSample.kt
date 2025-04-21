@@ -73,24 +73,28 @@ private fun ScreenSampleRoute(
         TitleBarWithBack(onBackClick = { externalNav.navigateUp() }) {
             Row(modifier = Modifier.fillMaxSize()) {
                 Box(
-                    modifier = Modifier.fillMaxWidth(0.35f)
-                        .fillMaxHeight()
-                        .padding(4.dp)
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.primary,
-                        ),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth(0.35f)
+                            .fillMaxHeight()
+                            .padding(4.dp)
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.primary,
+                            ),
                 ) {
                     MenuRoute(true, externalNav, internalNav)
                 }
                 Box(
-                    modifier = Modifier.fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(4.dp)
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.primary,
-                        ),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight()
+                            .padding(4.dp)
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.primary,
+                            ),
                 ) {
                     NavHost(
                         navController = internalNav,
@@ -164,37 +168,43 @@ private fun MenuScreen(
         Text(
             text = "A1",
             fontSize = 24.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-                .clickable {
-                    if (isExpanded) {
-                        navController.popBackStack()
-                    }
-                    navController.navigate(RouteA1)
-                },
+            modifier =
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .clickable {
+                        if (isExpanded) {
+                            navController.popBackStack()
+                        }
+                        navController.navigate(RouteA1)
+                    },
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = "A2",
             fontSize = 24.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-                .clickable {
-                    if (isExpanded) {
-                        navController.popBackStack()
-                    }
-                    navController.navigate(RouteA2)
-                },
+            modifier =
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .clickable {
+                        if (isExpanded) {
+                            navController.popBackStack()
+                        }
+                        navController.navigate(RouteA2)
+                    },
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = "A3",
             fontSize = 24.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-                .clickable {
-                    if (isExpanded) {
-                        navController.popBackStack()
-                    }
-                    navController.navigate(RouteA3)
-                },
+            modifier =
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .clickable {
+                        if (isExpanded) {
+                            navController.popBackStack()
+                        }
+                        navController.navigate(RouteA3)
+                    },
         )
     }
 }
@@ -280,9 +290,10 @@ private fun TitleBarWithBack(
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
                     contentDescription = "",
-                    modifier = Modifier
-                        .clickable { onBackClick() }
-                        .padding(12.dp),
+                    modifier =
+                        Modifier
+                            .clickable { onBackClick() }
+                            .padding(12.dp),
                 )
             },
         )

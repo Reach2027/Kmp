@@ -135,21 +135,24 @@ private fun TitleBarWithBack(
 
         TopAppBar(
             title = {},
-            modifier = Modifier
-                .hazeEffect(state = hazeState, style = CupertinoMaterials.thin())
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .hazeEffect(state = hazeState, style = CupertinoMaterials.thin())
+                    .fillMaxWidth(),
             navigationIcon = {
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
                     contentDescription = "",
-                    modifier = Modifier
-                        .clickable { onBackClick() }
-                        .padding(12.dp),
+                    modifier =
+                        Modifier
+                            .clickable { onBackClick() }
+                            .padding(12.dp),
                 )
             },
-            colors = TopAppBarDefaults.topAppBarColors().copy(
-                scrolledContainerColor = Color.Transparent,
-            ),
+            colors =
+                TopAppBarDefaults.topAppBarColors().copy(
+                    scrolledContainerColor = Color.Transparent,
+                ),
             scrollBehavior = scrollBehavior,
         )
     }
@@ -168,11 +171,12 @@ private fun Wallpapers(
 
         LoadState.Loading -> Loading()
 
-        is LoadState.NotLoading -> WallpaperItems(
-            pagingItems = pagingItems,
-            hazeState = hazeState,
-            scrollBehavior = scrollBehavior,
-        )
+        is LoadState.NotLoading ->
+            WallpaperItems(
+                pagingItems = pagingItems,
+                hazeState = hazeState,
+                scrollBehavior = scrollBehavior,
+            )
     }
 }
 
@@ -217,10 +221,11 @@ private fun WallpaperItems(
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
-            .hazeSource(state = hazeState),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .nestedScroll(scrollBehavior.nestedScrollConnection)
+                .hazeSource(state = hazeState),
     ) {
         item(
             key = "PaddingTop",
@@ -252,9 +257,11 @@ private fun LazyGridItemScope.BingWallpaperItem(model: BingWallpaperModel?) {
     AsyncImage(
         model = model.imageUrl,
         contentDescription = "",
-        modifier = Modifier.fillMaxWidth()
-            .wrapContentHeight()
-            .clip(MaterialTheme.shapes.large)
-            .animateItem(),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .clip(MaterialTheme.shapes.large)
+                .animateItem(),
     )
 }

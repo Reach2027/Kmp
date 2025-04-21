@@ -22,7 +22,6 @@ import androidx.compose.animation.core.spring
 import androidx.compose.runtime.Stable
 
 object AppAniSpec {
-
     const val STIFFNESS_WIDGET_ENTER = 800f
     const val STIFFNESS_WIDGET_EXIT = 1200f
     const val STIFFNESS_WIDGET_EXIT_LOW = 800f
@@ -39,41 +38,45 @@ fun <T> widgetEnter(
     dampingRatio: Float = Spring.DampingRatioNoBouncy,
     stiffness: Float = AppAniSpec.STIFFNESS_WIDGET_ENTER,
     visibilityThreshold: T? = null,
-): SpringSpec<T> = spring(
-    dampingRatio = dampingRatio,
-    stiffness = stiffness,
-    visibilityThreshold = visibilityThreshold,
-)
+): SpringSpec<T> =
+    spring(
+        dampingRatio = dampingRatio,
+        stiffness = stiffness,
+        visibilityThreshold = visibilityThreshold,
+    )
 
 @Stable
 fun <T> widgetExit(
     dampingRatio: Float = Spring.DampingRatioNoBouncy,
     stiffness: Float = AppAniSpec.STIFFNESS_WIDGET_EXIT,
     visibilityThreshold: T? = null,
-): SpringSpec<T> = spring(
-    dampingRatio = dampingRatio,
-    stiffness = stiffness,
-    visibilityThreshold = visibilityThreshold,
-)
+): SpringSpec<T> =
+    spring(
+        dampingRatio = dampingRatio,
+        stiffness = stiffness,
+        visibilityThreshold = visibilityThreshold,
+    )
 
 @Stable
 fun <T> groupEnter(
     dampingRatio: Float = Spring.DampingRatioNoBouncy,
     stiffness: Float = AppAniSpec.STIFFNESS_GROUP_ENTER,
     visibilityThreshold: T? = null,
-): SpringSpec<T> = spring(
-    dampingRatio = dampingRatio,
-    stiffness = stiffness,
-    visibilityThreshold = visibilityThreshold,
-)
+): SpringSpec<T> =
+    spring(
+        dampingRatio = dampingRatio,
+        stiffness = stiffness,
+        visibilityThreshold = visibilityThreshold,
+    )
 
 @Stable
 fun <T> groupExit(
     dampingRatio: Float = Spring.DampingRatioNoBouncy,
     stiffness: Float = AppAniSpec.STIFFNESS_GROUP_EXIT,
     visibilityThreshold: T? = null,
-): SpringSpec<T> = spring(
-    dampingRatio = dampingRatio,
-    stiffness = stiffness,
-    visibilityThreshold = visibilityThreshold,
-)
+): SpringSpec<T> =
+    spring(
+        dampingRatio = dampingRatio,
+        stiffness = stiffness,
+        visibilityThreshold = visibilityThreshold,
+    )

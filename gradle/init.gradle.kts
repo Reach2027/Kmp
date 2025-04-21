@@ -1,5 +1,3 @@
-val ktlintVersion = "1.5.0"
-
 initscript {
     val spotlessVersion = "7.0.3"
 
@@ -20,11 +18,6 @@ rootProject {
             kotlin {
                 target("**/*.kt")
                 targetExclude("**/build/**/*.kt")
-                ktlint(ktlintVersion).editorConfigOverride(
-                    mapOf(
-                        "android" to "true",
-                    ),
-                )
                 licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
             }
             format("kts") {

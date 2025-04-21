@@ -27,7 +27,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 
 interface BingWallpaperRepo {
-
     fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>>
 
     fun getWallpapers(): Flow<PagingData<BingWallpaperModel>>
@@ -38,13 +37,15 @@ internal class DefaultBingWallpaperRepo(
     private val pagingSource: BingWallpaperPagingSource,
     private val dispatcher: CoroutineDispatcher,
 ) : BingWallpaperRepo {
+    override fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>> =
+        flowResult(dispatcher) {
+            api
+                .getBingWallpapers(0, 1)
+                .images[0]
+        }
 
-    override fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>> = flowResult(dispatcher) {
-        api.getBingWallpapers(0, 1)
-            .images[0]
-    }
-
-    override fun getWallpapers(): Flow<PagingData<BingWallpaperModel>> = Pager(config = PagingConfig(pageSize = 7)) {
-        pagingSource
-    }.flow
+    override fun getWallpapers(): Flow<PagingData<BingWallpaperModel>> =
+        Pager(config = PagingConfig(pageSize = 7)) {
+            pagingSource
+        }.flow
 }

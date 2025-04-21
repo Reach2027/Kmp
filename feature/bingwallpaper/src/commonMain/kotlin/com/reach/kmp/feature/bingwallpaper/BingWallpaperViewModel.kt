@@ -27,8 +27,8 @@ import kotlinx.coroutines.flow.Flow
 internal class BingWallpaperViewModel(
     repo: BingWallpaperRepo,
 ) : ViewModel() {
-
     val wallpapers: Flow<PagingData<BingWallpaperModel>> =
-        repo.getWallpapers()
+        repo
+            .getWallpapers()
             .cachedIn(viewModelScope)
 }

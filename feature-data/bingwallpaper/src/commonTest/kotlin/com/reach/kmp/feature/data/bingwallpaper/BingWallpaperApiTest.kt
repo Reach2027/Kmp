@@ -23,11 +23,11 @@ import kotlin.test.Test
 import kotlin.test.assertTrue
 
 class BingWallpaperApiTest {
-
     @Test
-    fun apiTest() = runTest {
-        val api = DefaultBingWallpaperApi(provideHttpClient())
-        val result = api.getBingWallpapers(7, 1)
-        assertTrue { result.images.isNotEmpty() }
-    }
+    fun apiTest() =
+        runTest {
+            val api = DefaultBingWallpaperApi(provideHttpClient())
+            val result = api.getBingWallpapers(7, 1)
+            assertTrue { result.images.isNotEmpty() }
+        }
 }

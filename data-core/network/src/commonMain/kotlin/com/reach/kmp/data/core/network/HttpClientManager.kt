@@ -26,21 +26,22 @@ import kotlinx.serialization.json.Json
 private const val CONNECT_TIMEOUT = 5_000L
 private const val SOCKET_TIMEOUT = 3_000L
 
-internal fun ktorClient(): HttpClient = HttpClient {
-    install(Logging)
+internal fun ktorClient(): HttpClient =
+    HttpClient {
+        install(Logging)
 
-    install(HttpTimeout) {
-        connectTimeoutMillis = CONNECT_TIMEOUT
-        socketTimeoutMillis = SOCKET_TIMEOUT
-    }
+        install(HttpTimeout) {
+            connectTimeoutMillis = CONNECT_TIMEOUT
+            socketTimeoutMillis = SOCKET_TIMEOUT
+        }
 
-    install(ContentNegotiation) {
-        json(
-            Json {
-                ignoreUnknownKeys = true
-            },
-        )
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                },
+            )
+        }
     }
-}
 
 fun provideHttpClient() = ktorClient()

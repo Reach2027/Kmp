@@ -1,4 +1,5 @@
 dependencyResolutionManagement {
+    
     repositories {
         // Compose multiplatform
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
@@ -9,6 +10,7 @@ dependencyResolutionManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
     versionCatalogs {
         create("libs") {
             from(files("../gradle/libs.versions.toml"))

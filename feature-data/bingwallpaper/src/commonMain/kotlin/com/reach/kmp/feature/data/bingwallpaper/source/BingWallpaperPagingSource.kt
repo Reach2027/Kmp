@@ -23,24 +23,26 @@ import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 internal class BingWallpaperPagingSource(
     private val api: BingWallpaperApi,
 ) : PagingSource<Int, BingWallpaperModel>() {
+    override fun getRefreshKey(state: PagingState<Int, BingWallpaperModel>): Int? =
+        state.anchorPosition?.let { position ->
+            val anchorPage = state.closestPageToPosition(position)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
 
-    override fun getRefreshKey(state: PagingState<Int, BingWallpaperModel>): Int? = state.anchorPosition?.let { position ->
-        val anchorPage = state.closestPageToPosition(position)
-        anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-    }
-
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BingWallpaperModel> = try {
-        val currentPage = params.key ?: 0
-        val bingWallpaperModels = api.getBingWallpapers(
-            beforeDays = currentPage * 7,
-            count = 7,
-        )
-        LoadResult.Page(
-            data = bingWallpaperModels.images,
-            prevKey = null,
-            nextKey = if (currentPage > 0) null else currentPage + 1,
-        )
-    } catch (e: Exception) {
-        LoadResult.Error(e)
-    }
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BingWallpaperModel> =
+        try {
+            val currentPage = params.key ?: 0
+            val bingWallpaperModels =
+                api.getBingWallpapers(
+                    beforeDays = currentPage * 7,
+                    count = 7,
+                )
+            LoadResult.Page(
+                data = bingWallpaperModels.images,
+                prevKey = null,
+                nextKey = if (currentPage > 0) null else currentPage + 1,
+            )
+        } catch (e: Exception) {
+            LoadResult.Error(e)
+        }
 }
