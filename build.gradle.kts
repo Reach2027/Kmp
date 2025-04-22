@@ -15,34 +15,34 @@ plugins {
 
 allprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
+}
 
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        version.set("1.5.0")
-        debug.set(true)
-        verbose.set(true)
-        android.set(true)
-        outputToConsole.set(true)
-        outputColorName.set("RED")
-        ignoreFailures.set(true)
-//        enableExperimentalRules.set(true)
+ktlint {
+    val ktlintVersion = "1.5.0"
 
-//        additionalEditorconfig.set(
-//            mapOf(
-//                "max_line_length" to "20"
-//            )
-//        )
+    version.set(ktlintVersion)
+    debug.set(true)
+    verbose.set(true)
+    android.set(true)
+    outputToConsole.set(true)
+    outputColorName.set("RED")
+    ignoreFailures.set(true)
+//    enableExperimentalRules.set(true)
 
-        reporters {
-            reporter(ReporterType.HTML)
-        }
+//    additionalEditorconfig.set(
+//        mapOf(
+//            "max_line_length" to "20",
+//        ),
+//    )
 
-        filter {
-            include("**/kotlin/**")
-            exclude("**/build/**")
-        }
+    reporters {
+        reporter(ReporterType.HTML)
+        reporter(ReporterType.CHECKSTYLE)
     }
+}
 
-    dependencies {
-        ktlintRuleset("com.twitter.compose.rules:ktlint:0.0.26")
-    }
+dependencies {
+    val composeRules = "com.twitter.compose.rules:ktlint:0.0.26"
+
+    ktlintRuleset(composeRules)
 }
