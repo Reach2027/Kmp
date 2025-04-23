@@ -239,7 +239,7 @@ private fun WallpaperItems(
                     WindowInsets
                         .statusBars
                         .getTop(LocalDensity.current)
-                        .toDp() + TopAppBarDefaults.TopAppBarExpandedHeight - 32.dp,
+                        .toDp() + TopAppBarDefaults.TopAppBarExpandedHeight - 16.dp,
                 ),
             )
         }

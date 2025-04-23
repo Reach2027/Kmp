@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,9 +35,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.reach.kmp.feature.bingwallpaper.RouteBingWallpaper
 import com.reach.kmp.feature.compose.RouteScreenSample
+import com.reach.kmp.feature.learn.LearnScreenSample
 import kmp.shared.generated.resources.Res
-import kmp.shared.generated.resources.bing_wallpaper
-import kmp.shared.generated.resources.screen_sample
+import kmp.shared.generated.resources.shared_bing_wallpaper
+import kmp.shared.generated.resources.shared_learn_screen
+import kmp.shared.generated.resources.shared_screen_sample
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.stringResource
 
@@ -57,6 +60,7 @@ private fun StartRoute(navController: NavController) {
             modifier =
                 Modifier
                     .fillMaxWidth()
+                    .safeDrawingPadding()
                     .padding(top = 32.dp)
                     .padding(horizontal = 32.dp),
             horizontalArrangement =
@@ -68,16 +72,23 @@ private fun StartRoute(navController: NavController) {
         ) {
             Button(
                 modifier = Modifier.padding(horizontal = 32.dp),
+                onClick = { navController.navigate(LearnScreenSample) },
+            ) {
+                Text(text = stringResource(resource = Res.string.shared_learn_screen))
+            }
+
+            Button(
+                modifier = Modifier.padding(horizontal = 32.dp),
                 onClick = { navController.navigate(RouteScreenSample) },
             ) {
-                Text(text = stringResource(resource = Res.string.screen_sample))
+                Text(text = stringResource(resource = Res.string.shared_screen_sample))
             }
 
             Button(
                 modifier = Modifier.padding(horizontal = 32.dp),
                 onClick = { navController.navigate(RouteBingWallpaper) },
             ) {
-                Text(text = stringResource(resource = Res.string.bing_wallpaper))
+                Text(text = stringResource(resource = Res.string.shared_bing_wallpaper))
             }
         }
     }

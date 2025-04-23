@@ -49,6 +49,7 @@ include(":shared")
 
 include(":feature:bingwallpaper")
 include(":feature:compose")
+include(":feature:learn")
 
 include(":ui-core:common")
 

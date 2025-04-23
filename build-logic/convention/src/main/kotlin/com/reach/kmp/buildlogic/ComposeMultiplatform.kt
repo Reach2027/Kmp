@@ -53,6 +53,13 @@ internal fun Project.configureComposeMultiplatform(
                 implementation(libs, "navigation")
             }
         }
+
+        androidMain {
+            dependencies {
+                implementation(composeDeps.uiTooling)
+                implementation(composeDeps.preview)
+            }
+        }
     }
 
 }

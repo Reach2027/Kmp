@@ -32,7 +32,7 @@ kermit = "2.0.5"
 ktlintPlugin = "12.2.0"
 
 # Android
-agp = "8.9.1"
+agp = "8.9.2"
 androidCompileSdk = "35"
 androidMinSdk = "24"
 androidTargetSdk = "35"
@@ -84,7 +84,7 @@ androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", 
 androidx-paging-test = { group = "androidx.paging", name = "paging-testing", version.ref = "androidxPaging" }
 
 paging-common = { group = "app.cash.paging", name = "paging-common", version = "3.3.0-alpha02-0.5.1" }
-paging-compose-common = { group = "app.cash.paging", name = "paging-compose-common", version = "3.3.0-alpha02-0.5.1" }
+paging-compose = { group = "app.cash.paging", name = "paging-compose-common", version = "3.3.0-alpha02-0.5.1" }
 
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 

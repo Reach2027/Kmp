@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright 2025 Reach Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <string name="screen_sample">Screen Sample</string>
-    <string name="bing_wallpaper">Bing Wallpaper</string>
+    <string name="shared_learn_screen">Learn</string>
+    <string name="shared_screen_sample">Screen Sample</string>
+    <string name="shared_bing_wallpaper">Bing Wallpaper</string>
 </resources>

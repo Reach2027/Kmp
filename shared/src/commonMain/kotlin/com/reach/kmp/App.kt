@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import com.reach.kmp.feature.bingwallpaper.bingWallpaperRoute
 import com.reach.kmp.feature.bingwallpaper.di.bingWallpaperModule
 import com.reach.kmp.feature.compose.screenSampleRoute
+import com.reach.kmp.feature.learn.learnRoute
 import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
@@ -79,5 +80,7 @@ private fun AppNavHost(navController: NavHostController = rememberNavController(
         bingWallpaperRoute(navController)
 
         screenSampleRoute(navController)
+
+        learnRoute(navController)
     }
 }

@@ -26,6 +26,7 @@ kotlin {
             implementation(projects.uiCore.common)
             implementation(projects.feature.bingwallpaper)
             implementation(projects.feature.compose)
+            implementation(projects.feature.learn)
 
             implementation(libs.kotlinx.serialization.core)
         }
