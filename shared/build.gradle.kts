@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.sharedModule)
@@ -36,9 +35,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.android)
         }
 
-        val desktopMain by getting
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
+        jvmMain.dependencies {
             implementation(libs.kotlinx.coroutines.core.jvm)
             implementation(libs.kotlinx.coroutines.swing)
         }
@@ -47,16 +44,4 @@ kotlin {
 
 android {
     namespace = "com.reach.kmp.shared"
-}
-
-compose.desktop {
-    application {
-        mainClass = "com.reach.kmp.MainKt"
-
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.reach.kmp"
-            packageVersion = "1.0.0"
-        }
-    }
 }

@@ -28,14 +28,19 @@ internal fun Project.configureKotlinMultiplatform(
 
     jvmToolchain(21)
 
-    if (isConfigureEntry) {
-        androidTarget {
-            @OptIn(ExperimentalKotlinGradlePluginApi::class)
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_21)
-            }
-        }
+    // jvm
+    jvm()
 
+    // Android
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
+    }
+
+    // iOS
+    if (isConfigureEntry) {
         listOf(
             iosX64(),
             iosArm64(),
@@ -46,17 +51,7 @@ internal fun Project.configureKotlinMultiplatform(
                 isStatic = true
             }
         }
-
-        jvm("desktop")
     } else {
-        androidTarget {
-            @OptIn(ExperimentalKotlinGradlePluginApi::class)
-            compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_21)
-            }
-        }
-
-        // iOS
         iosX64()
         iosArm64()
         iosSimulatorArm64()
@@ -67,8 +62,6 @@ internal fun Project.configureKotlinMultiplatform(
 //            nodejs()
 //            binaries.executable()
 //        }
-
-        jvm()
     }
 
     sourceSets.apply {

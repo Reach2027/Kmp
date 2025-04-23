@@ -44,6 +44,7 @@ rootProject.name = "Kmp"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":androidApp")
+include(":desktopApp")
 
 include(":shared")
 
