@@ -84,7 +84,7 @@ fun NavGraphBuilder.bingWallpaperRoute(navController: NavController) {
 @Composable
 private fun BingWallpaperRoute(
     navController: NavController,
-    viewModel: BingWallpaperViewModel = koinViewModel(),
+    viewModel: BingWallpaperVM = koinViewModel(),
 ) {
     val pagingItems: LazyPagingItems<BingWallpaperModel> =
         viewModel.wallpapers.collectAsLazyPagingItems()
@@ -92,7 +92,7 @@ private fun BingWallpaperRoute(
     BingWallpaperScreen(
         pagingItems = pagingItems,
         onBackClick = { navController.navigateUp() },
-        onRetryClick = { },
+        onRetryClick = { pagingItems.retry() },
     )
 }
 
@@ -116,6 +116,7 @@ private fun BingWallpaperScreen(
             pagingItems = pagingItems,
             hazeState = hazeState,
             scrollBehavior = scrollBehavior,
+            onRetryClick = onRetryClick,
         )
     }
 }
@@ -164,10 +165,11 @@ private fun Wallpapers(
     pagingItems: LazyPagingItems<BingWallpaperModel>,
     hazeState: HazeState,
     scrollBehavior: TopAppBarScrollBehavior,
+    onRetryClick: () -> Unit,
 ) {
     val refreshState = pagingItems.loadState.refresh
     when (refreshState) {
-        is LoadState.Error -> Error(refreshState.error.toString()) { }
+        is LoadState.Error -> Error(refreshState.error.toString()) { onRetryClick }
 
         LoadState.Loading -> Loading()
 

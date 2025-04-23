@@ -31,34 +31,33 @@ plugins {
 
 allprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
-}
 
-ktlint {
-    val ktlintVersion = "1.5.0"
+    ktlint {
+        val ktlintVersion = "1.5.0"
 
-    version.set(ktlintVersion)
-    debug.set(true)
-    verbose.set(true)
-    android.set(true)
-    outputToConsole.set(true)
-    outputColorName.set("RED")
-    ignoreFailures.set(true)
-//    enableExperimentalRules.set(true)
+        version.set(ktlintVersion)
+        debug.set(true)
+        verbose.set(true)
+        android.set(true)
+        outputToConsole.set(true)
+        outputColorName.set("RED")
+        ignoreFailures.set(true)
 
-//    additionalEditorconfig.set(
-//        mapOf(
-//            "max_line_length" to "20",
-//        ),
-//    )
-
-    reporters {
-        reporter(ReporterType.HTML)
-        reporter(ReporterType.CHECKSTYLE)
+        reporters {
+            reporter(ReporterType.CHECKSTYLE)
+            reporter(ReporterType.JSON)
+        }
     }
-}
 
-dependencies {
-    val composeRules = "com.twitter.compose.rules:ktlint:0.0.26"
+    tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.GenerateReportsTask> {
+        reportsOutputDirectory.set(
+            project.layout.buildDirectory.dir("ktlint_report"),
+        )
+    }
 
-    ktlintRuleset(composeRules)
+    dependencies {
+        val composeRules = "com.twitter.compose.rules:ktlint:0.0.26"
+
+        ktlintRuleset(composeRules)
+    }
 }

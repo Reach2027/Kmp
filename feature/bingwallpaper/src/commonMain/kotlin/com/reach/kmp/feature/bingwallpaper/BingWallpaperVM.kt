@@ -24,7 +24,7 @@ import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import kotlinx.coroutines.flow.Flow
 
-internal class BingWallpaperViewModel(
+internal class BingWallpaperVM(
     repo: BingWallpaperRepo,
 ) : ViewModel() {
     val wallpapers: Flow<PagingData<BingWallpaperModel>> =
