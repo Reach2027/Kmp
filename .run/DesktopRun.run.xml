@@ -15,12 +15,12 @@
      limitations under the License.
 -->
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="DesktopAppRun" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+  <configuration default="false" name="DesktopRun" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="-DmainClass=MainKt --quiet" />
+      <option name="scriptParameters" value="-DmainClass=com.reach.kmp.MainKt --quiet" />
       <option name="taskDescriptions">
         <list />
       </option>

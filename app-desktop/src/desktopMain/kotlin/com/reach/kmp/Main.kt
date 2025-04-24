@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
+package com.reach.kmp
+
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import com.reach.kmp.App
+import com.reach.kmp.shared.App
 
 fun main() =
     application {
         Window(
             onCloseRequest = ::exitApplication,
             state = rememberWindowState(size = DpSize(960.dp, 800.dp)),
-            title = "Kotlin Multiplatform",
+            title = "KMP",
+//            icon = painterResource(Res)
         ) {
             App()
         }

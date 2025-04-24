@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.kmp
+package com.reach.kmp.shared
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
