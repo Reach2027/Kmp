@@ -47,10 +47,6 @@ class SharedModulePlugin : Plugin<Project> {
                         implementation(libs, "koin-compose-navigation")
                     }
                 }
-
-                androidMain.dependencies {
-                    implementation(libs, "androidx-activity-compose")
-                }
             }
         }
 

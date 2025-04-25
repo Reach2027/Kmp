@@ -55,14 +55,14 @@ internal fun Project.configureKotlinMultiplatform(
         iosX64()
         iosArm64()
         iosSimulatorArm64()
+    }
 
-        // wasm
+    // wasm
 //        @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
 //        wasmJs {
 //            nodejs()
 //            binaries.executable()
 //        }
-    }
 
     sourceSets.apply {
         commonMain {

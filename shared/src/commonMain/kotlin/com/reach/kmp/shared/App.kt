@@ -23,6 +23,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -30,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.reach.kmp.feature.bingwallpaper.bingWallpaperRoute
 import com.reach.kmp.feature.bingwallpaper.di.bingWallpaperModule
 import com.reach.kmp.feature.compose.screenSampleRoute
+import com.reach.kmp.feature.learn.learnModule
 import com.reach.kmp.feature.learn.learnRoute
 import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
@@ -39,13 +41,19 @@ import org.koin.compose.KoinApplication
 import org.koin.dsl.module
 
 @Composable
-fun App() {
+fun App(darkCallback: (Boolean) -> Unit = {}) {
+    val isDark = isSystemInDarkTheme()
     val colorScheme =
-        if (isSystemInDarkTheme()) {
+        if (isDark) {
             darkColorScheme()
         } else {
             lightColorScheme()
         }
+
+    LaunchedEffect(isDark) {
+        darkCallback(isDark)
+    }
+
     MaterialTheme(
         colorScheme = colorScheme,
     ) {
@@ -62,6 +70,7 @@ fun App() {
 private val appModule =
     module {
         includes(bingWallpaperModule)
+        includes(learnModule)
     }
 
 @Composable

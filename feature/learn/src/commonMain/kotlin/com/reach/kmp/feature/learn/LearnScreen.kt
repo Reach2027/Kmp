@@ -29,14 +29,17 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
 
 @Serializable
 object LearnScreenSample
@@ -48,16 +51,27 @@ fun NavGraphBuilder.learnRoute(navController: NavController) {
 }
 
 @Composable
-private fun LearnRoute(navController: NavController) {
-    LearnScreen(onBackClick = { navController.navigateUp() })
+private fun LearnRoute(
+    navController: NavController,
+    viewModel: LearnVM = koinViewModel(),
+) {
+    val text by viewModel.text.collectAsStateWithLifecycle()
+
+    LearnScreen(
+        onBackClick = { navController.navigateUp() },
+        text = text,
+    )
 }
 
 @Composable
-private fun LearnScreen(onBackClick: () -> Unit) {
+private fun LearnScreen(
+    onBackClick: () -> Unit,
+    text: String,
+) {
     TitleBarWithBack(onBackClick = onBackClick) {
         Box(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = "Hello Compose",
+                text = text,
                 modifier = Modifier.align(Alignment.Center),
             )
         }
@@ -94,5 +108,8 @@ private fun TitleBarWithBack(
 @Preview
 @Composable
 private fun LearnScreenPreview() {
-    LearnScreen { }
+    LearnScreen(
+        onBackClick = {},
+        text = "Hello Compose",
+    )
 }

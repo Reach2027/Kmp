@@ -16,18 +16,34 @@
 
 package com.reach.kmp
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.reach.kmp.shared.App
+
+private val LightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
+private val DarkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        enableEdgeToEdge()
-
-        setContent { App() }
+        setContent {
+            App { isDark ->
+                enableEdgeToEdge(
+                    statusBarStyle =
+                        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) {
+                            isDark
+                        },
+                    navigationBarStyle =
+                        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) {
+                            isDark
+                        },
+                )
+            }
+        }
     }
 }
