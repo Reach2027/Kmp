@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Reach Project
+ * Copyright 2025 Reach Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-package com.reach.kmp
+package com.reach.kmp.shared
 
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.window.ComposeViewport
-import kotlinx.browser.document
-
-@OptIn(ExperimentalComposeUiApi::class)
-fun main() {
-    ComposeViewport(document.body!!) {
-        WasmSample()
-    }
-}
+actual fun composePlatform(): String = "Android"

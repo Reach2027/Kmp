@@ -70,6 +70,11 @@ private fun StartRoute(navController: NavController) {
                     .safeDrawingPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Text(
+                text = "Hello Compose ${composePlatform()}",
+                modifier = Modifier.padding(top = 16.dp),
+            )
+
             Row(
                 modifier = Modifier.padding(top = 16.dp),
                 verticalAlignment = Alignment.CenterVertically,

@@ -29,7 +29,6 @@ fun main() =
             onCloseRequest = ::exitApplication,
             state = rememberWindowState(size = DpSize(960.dp, 800.dp)),
             title = "KMP",
-//            icon = painterResource(Res)
         ) {
             App()
         }
