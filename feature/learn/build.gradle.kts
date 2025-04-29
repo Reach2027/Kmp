@@ -15,13 +15,27 @@
  */
 plugins {
     alias(libs.plugins.featureModule)
-    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.kotlinx.serialization.core)
+            implementation(projects.dataCore.network)
+
+            implementation(libs.ktor.core)
+
+            implementation(libs.kotlinx.serialization.json)
+
+            implementation(libs.kotlinx.datetime)
+
+            implementation(libs.paging.common)
+            implementation(libs.paging.compose)
+
+            implementation(libs.coil)
+            implementation(libs.coil.ktor)
+
+            implementation(libs.haze)
+            implementation(libs.haze.materials)
         }
     }
 }

@@ -15,15 +15,12 @@
  */
 plugins {
     alias(libs.plugins.featureModule)
-    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.featureData.bingwallpaper)
-
-            implementation(libs.kotlinx.serialization.core)
 
             implementation(libs.coil)
             implementation(libs.coil.ktor)

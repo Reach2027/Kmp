@@ -17,7 +17,9 @@ material3Adaptive = "1.0.1"
 androidxAnnotation = "1.9.1"
 androidxCollection = "1.5.0"
 androidxPaging = "3.3.6"
-androidxDataStore = "1.1.4"
+androidxDataStore = "1.1.5"
+
+cashPaging = "3.3.0-alpha02-0.5.1"
 
 koin = "4.0.4"
 
@@ -83,8 +85,8 @@ androidx-paging-common = { group = "androidx.paging", name = "paging-common", ve
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging" }
 androidx-paging-test = { group = "androidx.paging", name = "paging-testing", version.ref = "androidxPaging" }
 
-paging-common = { group = "app.cash.paging", name = "paging-common", version = "3.3.0-alpha02-0.5.1" }
-paging-compose = { group = "app.cash.paging", name = "paging-compose-common", version = "3.3.0-alpha02-0.5.1" }
+paging-common = { group = "app.cash.paging", name = "paging-common", version.ref = "cashPaging" }
+paging-compose = { group = "app.cash.paging", name = "paging-compose-common", version.ref = "cashPaging" }
 
 androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 

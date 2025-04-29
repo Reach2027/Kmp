@@ -32,6 +32,7 @@ class FeatureModulePlugin : Plugin<Project> {
             apply(getPluginId("kotlinMultiplatform"))
             apply(getPluginId("composeMultiplatform"))
             apply(getPluginId("composeCompiler"))
+            apply(getPluginId("kotlinxSerialization"))
 
             apply(getPluginId("androidLibrary"))
         }
@@ -48,6 +49,7 @@ class FeatureModulePlugin : Plugin<Project> {
                         implementation(project(":ui-core:common"))
                         implementation(project(":ui-base:common"))
 
+                        implementation(libs, "kotlinx-serialization-core")
                         implementation(libs, "koin-compose")
                         implementation(libs, "koin-compose-navigation")
                     }

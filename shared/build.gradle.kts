@@ -16,7 +16,6 @@
 
 plugins {
     alias(libs.plugins.sharedModule)
-    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -26,8 +25,6 @@ kotlin {
             implementation(projects.feature.bingwallpaper)
             implementation(projects.feature.compose)
             implementation(projects.feature.learn)
-
-            implementation(libs.kotlinx.serialization.core)
         }
 
         androidMain.dependencies {

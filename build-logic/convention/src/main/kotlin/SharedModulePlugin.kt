@@ -32,6 +32,7 @@ class SharedModulePlugin : Plugin<Project> {
             apply(getPluginId("kotlinMultiplatform"))
             apply(getPluginId("composeMultiplatform"))
             apply(getPluginId("composeCompiler"))
+            apply(getPluginId("kotlinxSerialization"))
 
             apply(getPluginId("androidLibrary"))
         }
@@ -43,6 +44,7 @@ class SharedModulePlugin : Plugin<Project> {
             sourceSets.apply {
                 commonMain {
                     dependencies {
+                        implementation(libs, "kotlinx-serialization-core")
                         implementation(libs, "koin-compose")
                         implementation(libs, "koin-compose-navigation")
                     }
