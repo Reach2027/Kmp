@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.feature.data.bingwallpaper.source
+package com.reach.kmp.feature.data.bingwallpaper.datasource
 
 import app.cash.paging.PagingSource
 import app.cash.paging.PagingState
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
+import org.koin.core.annotation.Factory
 
+@Factory
 internal class BingWallpaperPagingSource(
     private val api: BingWallpaperApi,
 ) : PagingSource<Int, BingWallpaperModel>() {

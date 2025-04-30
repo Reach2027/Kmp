@@ -24,6 +24,7 @@ dependencies {
     compileOnly(libs.plugins.composeMultiplatform.toDep())
     compileOnly(libs.plugins.composeCompiler.toDep())
     compileOnly(libs.plugins.kotlinxSerialization.toDep())
+    compileOnly(libs.plugins.ksp.toDep())
 
     compileOnly(libs.plugins.androidApplication.toDep())
     compileOnly(libs.plugins.androidLibrary.toDep())

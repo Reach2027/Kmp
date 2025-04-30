@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.data.base.common.di
+package com.reach.kmp.data.base.common.flow
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import org.koin.core.qualifier.qualifier
-import org.koin.dsl.module
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
-val dispatcherModule =
-    module {
-        single<CoroutineDispatcher>(qualifier(QualifierDispatchers.IO)) { Dispatchers.IO }
+inline fun <T> flowResult(
+    dispatcher: CoroutineDispatcher,
+    crossinline block: suspend () -> T,
+): Flow<Result<T>> =
+    flow {
+        emit(block())
+    }.asResult()
+        .flowOn(dispatcher)
 
-        single<CoroutineDispatcher>(qualifier(QualifierDispatchers.Default)) { Dispatchers.Default }
-
-        single<CoroutineDispatcher>(qualifier(QualifierDispatchers.Main)) { Dispatchers.Main }
-    }
+inline fun <T> Flow<T>.asResult(): Flow<Result<T>> =
+    map { Result.success(it) }
+        .catch { emit(Result.failure(it)) }

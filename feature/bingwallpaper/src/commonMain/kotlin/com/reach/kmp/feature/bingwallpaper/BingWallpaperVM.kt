@@ -23,7 +23,9 @@ import androidx.paging.cachedIn
 import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperRepo
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import kotlinx.coroutines.flow.Flow
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 internal class BingWallpaperVM(
     repo: BingWallpaperRepo,
 ) : ViewModel() {

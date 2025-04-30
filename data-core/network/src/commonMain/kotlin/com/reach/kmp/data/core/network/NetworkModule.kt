@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Reach Project
+ * Copyright 2025 Reach Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.data.base.common.di
+package com.reach.kmp.data.core.network
 
-enum class QualifierDispatchers {
-    IO,
-    Default,
-    Main,
+import io.ktor.client.HttpClient
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
+
+@Module
+@ComponentScan("com.reach.kmp.data.core.network")
+class NetworkModule {
+    @Single
+    fun httpClient(): HttpClient = ktorClient()
 }

@@ -19,12 +19,15 @@ package com.reach.kmp.feature.data.bingwallpaper
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.reach.kmp.data.base.common.flowResult
+import com.reach.kmp.data.base.common.DispatcherNamed
+import com.reach.kmp.data.base.common.flow.flowResult
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
-import com.reach.kmp.feature.data.bingwallpaper.source.BingWallpaperApi
-import com.reach.kmp.feature.data.bingwallpaper.source.BingWallpaperPagingSource
+import com.reach.kmp.feature.data.bingwallpaper.datasource.BingWallpaperApi
+import com.reach.kmp.feature.data.bingwallpaper.datasource.BingWallpaperPagingSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Named
 
 interface BingWallpaperRepo {
     fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>>
@@ -32,10 +35,11 @@ interface BingWallpaperRepo {
     fun getWallpapers(): Flow<PagingData<BingWallpaperModel>>
 }
 
+@Factory(binds = [BingWallpaperRepo::class])
 internal class DefaultBingWallpaperRepo(
     private val api: BingWallpaperApi,
     private val pagingSource: BingWallpaperPagingSource,
-    private val dispatcher: CoroutineDispatcher,
+    @Named(DispatcherNamed.IO) private val dispatcher: CoroutineDispatcher,
 ) : BingWallpaperRepo {
     override fun getTodayWallpaper(): Flow<Result<BingWallpaperModel>> =
         flowResult(dispatcher) {

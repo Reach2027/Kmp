@@ -16,23 +16,28 @@
 
 package com.reach.kmp.buildlogic
 
-import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 
-internal fun Project.configureAndroid(
-    extension: CommonExtension<*, *, *, *, *, *>,
-) = extension.apply {
-    compileSdk = libs.findVersion("androidCompileSdk").get().requiredVersion.toInt()
-
-    lint.targetSdk = libs.findVersion("androidTargetSdk").get().requiredVersion.toInt()
-
-    defaultConfig {
-        minSdk = libs.findVersion("androidMinSdk").get().requiredVersion.toInt()
+internal fun Project.configureAndroid() {
+    with(pluginManager) {
+        apply(getPluginId("androidLibrary"))
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+    extensions.configure<LibraryExtension> {
+        compileSdk = libs.findVersion("androidCompileSdk").get().requiredVersion.toInt()
+
+        lint.targetSdk = libs.findVersion("androidTargetSdk").get().requiredVersion.toInt()
+
+        defaultConfig {
+            minSdk = libs.findVersion("androidMinSdk").get().requiredVersion.toInt()
+        }
+
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
+        }
     }
 }

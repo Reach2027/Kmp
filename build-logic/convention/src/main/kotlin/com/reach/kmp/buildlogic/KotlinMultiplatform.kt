@@ -17,74 +17,81 @@
 package com.reach.kmp.buildlogic
 
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureKotlinMultiplatform(
-    extension: KotlinMultiplatformExtension,
     isConfigureEntry: Boolean = false,
-) = extension.apply {
+    configure: KotlinMultiplatformExtension.() -> Unit = { },
+) {
+    configureAndroid()
 
-    jvmToolchain(21)
-
-    // jvm
-    jvm()
-
-    // Android
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-        }
+    with(pluginManager) {
+        apply(getPluginId("kotlinMultiplatform"))
+        apply(getPluginId("ksp"))
     }
 
-    // iOS
-    if (isConfigureEntry) {
-        listOf(
-            iosX64(),
-            iosArm64(),
-            iosSimulatorArm64(),
-        ).forEach { iosTarget ->
-            iosTarget.binaries.framework {
-                baseName = "ComposeApp"
-                isStatic = true
+    extensions.configure<KotlinMultiplatformExtension> {
+        jvmToolchain(21)
+
+        // jvm
+        jvm()
+
+        // Android
+        androidTarget {
+            @OptIn(ExperimentalKotlinGradlePluginApi::class)
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_21)
             }
         }
-    } else {
-        iosX64()
-        iosArm64()
-        iosSimulatorArm64()
-    }
 
-    // wasm
+        // iOS
+        if (isConfigureEntry) {
+            listOf(
+                iosX64(),
+                iosArm64(),
+                iosSimulatorArm64(),
+            ).forEach { iosTarget ->
+                iosTarget.binaries.framework {
+                    baseName = "ComposeApp"
+                    isStatic = true
+                }
+            }
+        } else {
+            iosX64()
+            iosArm64()
+            iosSimulatorArm64()
+        }
+
+        // wasm
 //        @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
 //        wasmJs {
 //            nodejs()
 //            binaries.executable()
 //        }
 
-    sourceSets.apply {
-        commonMain {
-            dependencies {
-                implementation(libs, "kotlinx-coroutines-core")
+        sourceSets.apply {
+            commonMain {
+                dependencies {
+                    implementation(libs, "kotlinx-coroutines-core")
 
-                implementation(libs, "koin-core")
-                implementation(libs, "koin-core-coroutines")
+                    implementation(libs, "kermit")
 
-                implementation(libs, "kermit")
+                    implementation(libs, "androidx-annotation")
+                    implementation(libs, "androidx-collection")
+                }
+            }
 
-                implementation(libs, "androidx-annotation")
-                implementation(libs, "androidx-collection")
+            commonTest {
+                dependencies {
+                    implementation(kotlin("test"))
+                    implementation(libs, "kotlinx-coroutines-test")
+                }
             }
         }
 
-        commonTest {
-            dependencies {
-                implementation(kotlin("test"))
-                implementation(libs, "kotlinx-coroutines-test")
-            }
-        }
+        configure()
     }
-
 }

@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.data.core.network.di
+package com.reach.kmp.feature.bingwallpaper
 
-import com.reach.kmp.data.core.network.ktorClient
-import io.ktor.client.HttpClient
-import org.koin.dsl.module
+import com.reach.kmp.feature.data.bingwallpaper.BingWallpaperDataModule
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
 
-val httpClientModule =
-    module {
-        single<HttpClient> { ktorClient() }
-    }
+@Module(includes = [BingWallpaperDataModule::class])
+@ComponentScan("com.reach.kmp.feature.bingwallpaper")
+class BingWallpaperModule

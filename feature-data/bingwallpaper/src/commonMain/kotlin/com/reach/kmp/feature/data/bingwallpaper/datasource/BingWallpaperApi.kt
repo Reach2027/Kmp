@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.feature.data.bingwallpaper.source
+package com.reach.kmp.feature.data.bingwallpaper.datasource
 
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpapersModel
 import io.ktor.client.HttpClient
@@ -22,6 +22,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.format.char
+import org.koin.core.annotation.Factory
 
 private const val BING_BASE_URL = "https://www.bing.com"
 private const val BING_IMAGE_URL = "/HPImageArchive.aspx"
@@ -33,6 +34,7 @@ internal interface BingWallpaperApi {
     ): BingWallpapersModel
 }
 
+@Factory(binds = [BingWallpaperApi::class])
 internal class DefaultBingWallpaperApi(
     private val httpClient: HttpClient,
 ) : BingWallpaperApi {

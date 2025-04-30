@@ -28,8 +28,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.reach.kmp.feature.bingwallpaper.BingWallpaperModule
 import com.reach.kmp.feature.bingwallpaper.bingWallpaperRoute
-import com.reach.kmp.feature.bingwallpaper.di.bingWallpaperModule
 import com.reach.kmp.feature.compose.screenSampleRoute
 import com.reach.kmp.feature.learn.learnModule
 import com.reach.kmp.feature.learn.learnRoute
@@ -39,6 +39,7 @@ import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
 import org.koin.compose.KoinApplication
 import org.koin.dsl.module
+import org.koin.ksp.generated.*
 
 @Composable
 fun App(darkCallback: (Boolean) -> Unit = {}) {
@@ -69,7 +70,7 @@ fun App(darkCallback: (Boolean) -> Unit = {}) {
 
 private val appModule =
     module {
-        includes(bingWallpaperModule)
+        includes(BingWallpaperModule().module)
         includes(learnModule)
     }
 

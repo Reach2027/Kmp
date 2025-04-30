@@ -14,44 +14,33 @@
  * limitations under the License.
  */
 
-import com.android.build.api.dsl.LibraryExtension
-import com.reach.kmp.buildlogic.configureAndroid
 import com.reach.kmp.buildlogic.configureComposeMultiplatform
+import com.reach.kmp.buildlogic.configureKoin
 import com.reach.kmp.buildlogic.configureKotlinMultiplatform
 import com.reach.kmp.buildlogic.getPluginId
 import com.reach.kmp.buildlogic.implementation
 import com.reach.kmp.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class SharedModulePlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
-            apply(getPluginId("kotlinMultiplatform"))
-            apply(getPluginId("composeMultiplatform"))
-            apply(getPluginId("composeCompiler"))
             apply(getPluginId("kotlinxSerialization"))
-
-            apply(getPluginId("androidLibrary"))
         }
 
-        extensions.configure<KotlinMultiplatformExtension> {
-            configureKotlinMultiplatform(this, true)
+        configureKotlinMultiplatform(true) {
             configureComposeMultiplatform(this)
 
             sourceSets.apply {
                 commonMain {
                     dependencies {
                         implementation(libs, "kotlinx-serialization-core")
-                        implementation(libs, "koin-compose")
-                        implementation(libs, "koin-compose-navigation")
                     }
                 }
             }
-        }
 
-        extensions.configure<LibraryExtension>(::configureAndroid)
+            configureKoin(kmpExtension = this, addKoinCompose = true)
+        }
     }
 }

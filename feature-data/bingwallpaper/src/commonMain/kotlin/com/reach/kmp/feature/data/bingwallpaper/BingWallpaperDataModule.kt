@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.data.base.common.di
+package com.reach.kmp.feature.data.bingwallpaper
 
-enum class QualifierCoroutineScope {
-    AppDefault,
-    AppIo,
-    OneParallelismDefault,
-    OneParallelismIo,
-}
+import com.reach.kmp.data.base.common.BaseCommonModule
+import com.reach.kmp.data.core.network.NetworkModule
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
+
+@Module(includes = [BaseCommonModule::class, NetworkModule::class])
+@ComponentScan("com.reach.kmp.feature.data.bingwallpaper")
+class BingWallpaperDataModule
