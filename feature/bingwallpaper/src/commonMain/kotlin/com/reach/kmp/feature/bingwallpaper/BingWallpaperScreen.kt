@@ -139,7 +139,7 @@ private fun TitleBarWithBack(
             title = {},
             modifier =
                 Modifier
-                    .hazeEffect(state = hazeState, style = CupertinoMaterials.thin())
+                    .hazeEffect(state = hazeState, style = CupertinoMaterials.thick())
                     .fillMaxWidth(),
             navigationIcon = {
                 Icon(

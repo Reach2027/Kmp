@@ -1,23 +1,38 @@
 #!/bin/bash
-echo "----------------------------------------------------"
-echo "Running git pre-commit hook, Running ktlintReport..."
-echo "----------------------------------------------------"
 
-stagedFiles=$(git diff --staged --name-only)
+echo "----------------------------------------------------------------------------"
+
+echo "Running git pre-commit hook..."
+
+echo "Running git spotlessApply..."
+
+./gradlew spotlessApply --init-script=gradle/init.gradle.kts
+spotlessCode=$?
+
+echo "Running ktlintReport..."
 
 ./gradlew ktlintReport
-
 exitCode=$?
+
+echo "----------------------------------------------------------------------------"
+
+
+echo "----------------------------------------------------------------------------"
+
+if [ "$spotlessCode" = 0 ] ; then
+    echo "Spotless apply success"
+else
+    echo "Spotless apply failed"
+fi
+
 
 if [ "$exitCode" = 0 ] ; then
     echo "Static analysis found no issues — well done!"
-
-    exit 0
 else
-    echo "----------------------------------------------------------------------------"
     echo 1>&2 "Static analysis detected issues that must be resolved before committing"
     echo "See your project /build/ktlintReport/ktlintReport.xml"
-    echo "----------------------------------------------------------------------------"
-
-    exit 1
 fi
+
+echo "----------------------------------------------------------------------------"
+
+exit "$exitCode"

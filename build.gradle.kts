@@ -162,7 +162,7 @@ task("ktlintReport") {
                     val filePath = fileNode.getAttribute("name")
                     val mergedFileNode = findOrCreateFileNode(mergedDoc, rootElement, filePath)
 
-                    logger.error("--------------------------------------------")
+                    logger.error("\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️")
                     logger.error("FilePath: $filePath")
                     val errorNodes = fileNode.getElementsByTagName("error")
                     for (j in 0 until errorNodes.length) {
@@ -181,7 +181,7 @@ task("ktlintReport") {
                             """.trimIndent(),
                         )
                     }
-                    logger.error("--------------------------------------------")
+                    logger.error("⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️")
                 }
             } catch (e: Exception) {
                 logger.error("Merge ${file.name} error: ${e.message}")
