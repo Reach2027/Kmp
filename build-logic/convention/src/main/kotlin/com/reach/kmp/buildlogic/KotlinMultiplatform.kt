@@ -30,7 +30,6 @@ internal fun Project.configureKotlinMultiplatform(
 
     with(pluginManager) {
         apply(getPluginId("kotlinMultiplatform"))
-        apply(getPluginId("ksp"))
     }
 
     extensions.configure<KotlinMultiplatformExtension> {

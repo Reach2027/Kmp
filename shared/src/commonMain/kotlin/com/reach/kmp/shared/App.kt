@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package com.reach.kmp.shared
 
 import androidx.compose.foundation.isSystemInDarkTheme

@@ -168,9 +168,8 @@ private fun Wallpapers(
     scrollBehavior: TopAppBarScrollBehavior,
     onRetryClick: () -> Unit,
 ) {
-    val refreshState = pagingItems.loadState.refresh
-    when (refreshState) {
-        is LoadState.Error -> Error(refreshState.error.toString()) { onRetryClick }
+    when (val refreshState = pagingItems.loadState.refresh) {
+        is LoadState.Error -> Error(refreshState.error.toString()) { onRetryClick() }
 
         LoadState.Loading -> Loading()
 

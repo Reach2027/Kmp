@@ -21,9 +21,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.reach.kmp.data.base.common.DispatcherNamed
 import com.reach.kmp.data.base.common.flow.flowResult
-import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import com.reach.kmp.feature.data.bingwallpaper.datasource.BingWallpaperApi
 import com.reach.kmp.feature.data.bingwallpaper.datasource.BingWallpaperPagingSource
+import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.annotation.Factory

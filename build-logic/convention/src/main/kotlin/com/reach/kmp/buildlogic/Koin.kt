@@ -27,9 +27,8 @@ internal fun Project.configureKoin(
     kmpExtension: KotlinMultiplatformExtension,
     addKoinCompose: Boolean = false,
 ) {
-    with(pluginManager) {
-        apply(getPluginId("ksp"))
-    }
+
+    configureKsp()
 
     with(kmpExtension) {
         sourceSets.apply {
@@ -61,23 +60,6 @@ internal fun Project.configureKoin(
         add("kspIosX64", koinKsp)
         add("kspIosArm64", koinKsp)
         add("kspIosSimulatorArm64", koinKsp)
-    }
-
-    // Koin KSP Trigger Common Metadata Generation from Native tasks
-    tasks.withType(KotlinCompilationTask::class.java).configureEach {
-        if ("kspCommonMainKotlinMetadata" != name) {
-            dependsOn("kspCommonMainKotlinMetadata")
-        }
-    }
-
-    // ktlint format depends on koin ksp
-    tasks.named("runKtlintFormatOverCommonMainSourceSet") {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
-
-    // ktlint check depends on koin ksp
-    tasks.named("runKtlintCheckOverCommonMainSourceSet") {
-        dependsOn("kspCommonMainKotlinMetadata")
     }
 
     extensions.configure<KspExtension> {
