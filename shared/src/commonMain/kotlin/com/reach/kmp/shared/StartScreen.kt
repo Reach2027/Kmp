@@ -42,11 +42,6 @@ import androidx.navigation.compose.composable
 import com.reach.kmp.feature.bingwallpaper.RouteBingWallpaper
 import com.reach.kmp.feature.compose.RouteScreenSample
 import com.reach.kmp.feature.learn.LearnScreenSample
-import kmp.shared.generated.resources.Res
-import kmp.shared.generated.resources.ic_cmp_logo
-import kmp.shared.generated.resources.shared_bing_wallpaper
-import kmp.shared.generated.resources.shared_learn_screen
-import kmp.shared.generated.resources.shared_screen_sample
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource

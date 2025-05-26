@@ -61,10 +61,8 @@ fun App(darkCallback: (Boolean) -> Unit = {}) {
         colorScheme = colorScheme,
     ) {
         KoinApplication(application = { modules(appModule) }) {
-            MaterialTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    AppNavHost()
-                }
+            Surface(modifier = Modifier.fillMaxSize()) {
+                AppNavHost()
             }
         }
     }

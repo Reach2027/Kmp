@@ -44,6 +44,7 @@ internal fun Project.configureKotlinMultiplatform(
             compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_21)
             }
+            publishLibraryVariants("release")
         }
 
         // iOS
@@ -93,4 +94,6 @@ internal fun Project.configureKotlinMultiplatform(
 
         configure()
     }
+
+    configurePublish()
 }

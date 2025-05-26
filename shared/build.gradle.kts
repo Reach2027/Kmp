@@ -39,6 +39,12 @@ kotlin {
     }
 }
 
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "com.reach.kmp.shared"
+    generateResClass = auto
+}
+
 android {
     namespace = "com.reach.kmp.shared"
 }
