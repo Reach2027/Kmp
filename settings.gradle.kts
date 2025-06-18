@@ -30,6 +30,7 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        mavenLocal()
         // Compose multiplatform dev
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
         // google and mavenCentral

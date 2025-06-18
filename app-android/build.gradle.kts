@@ -79,5 +79,7 @@ android {
 dependencies {
     implementation(projects.shared)
 
+//    implementation("com.reach.kmp:shared:0.0.1-local")
+
     implementation(libs.androidx.activity.compose)
 }

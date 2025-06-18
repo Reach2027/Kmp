@@ -16,15 +16,22 @@
 
 package com.reach.kmp.feature.learn
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -37,6 +44,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.reach.kmp.ui.base.common.widget.RkText
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -74,6 +82,70 @@ private fun LearnScreen(
                 text = text,
                 modifier = Modifier.align(Alignment.Center),
             )
+
+            Column(
+                modifier =
+                    Modifier
+                        .padding(top = 32.dp)
+                        .align(Alignment.TopCenter),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Row(
+                    modifier =
+                        Modifier.border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.primary,
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Box(
+                        modifier =
+                            Modifier
+                                .height(4.dp)
+                                .width(16.dp)
+                                .background(MaterialTheme.colorScheme.primary),
+                    )
+                    RkText(
+                        text = "国国国国国国国国国国",
+                        fontSize = 32.dp,
+                    )
+                    Box(
+                        modifier =
+                            Modifier
+                                .height(4.dp)
+                                .width(16.dp)
+                                .background(MaterialTheme.colorScheme.primary),
+                    )
+                }
+                Spacer(modifier = Modifier.height(18.dp))
+                Row(
+                    modifier =
+                        Modifier.border(
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.primary,
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Box(
+                        modifier =
+                            Modifier
+                                .height(4.dp)
+                                .width(16.dp)
+                                .background(MaterialTheme.colorScheme.primary),
+                    )
+                    RkText(
+                        text = "EEEEEEEEEEEEEEEEEE",
+                        fontSize = 32.dp,
+                    )
+                    Box(
+                        modifier =
+                            Modifier
+                                .height(4.dp)
+                                .width(16.dp)
+                                .background(MaterialTheme.colorScheme.primary),
+                    )
+                }
+            }
         }
     }
 }
