@@ -16,12 +16,10 @@
 
 package com.reach.kmp.ui.base.common.widget
 
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.background
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
@@ -35,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.reach.kmp.ui.base.common.toSp
 
 @Composable
@@ -46,10 +45,10 @@ fun RkText(
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
     fontFamily: FontFamily? = null,
-    letterSpacing: TextUnit = TextUnit.Unspecified,
+    letterSpacing: TextUnit = 0.sp,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
-    lineHeight: TextUnit = TextUnit.Unspecified,
+    lineHeight: Dp = fontSize,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
@@ -59,10 +58,7 @@ fun RkText(
 ) {
     Text(
         text = text,
-        modifier =
-            modifier
-                .height(fontSize)
-                .wrapContentHeight(align = Alignment.CenterVertically, unbounded = true),
+        modifier = modifier.background(color = Color.Cyan.copy(alpha = 0.5f)),
         color = color,
         fontSize = fontSize.toSp(),
         fontStyle = fontStyle,
@@ -71,7 +67,7 @@ fun RkText(
         letterSpacing = letterSpacing,
         textDecoration = textDecoration,
         textAlign = textAlign,
-        lineHeight = lineHeight,
+        lineHeight = lineHeight.toSp(),
         overflow = overflow,
         softWrap = softWrap,
         maxLines = maxLines,

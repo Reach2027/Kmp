@@ -16,6 +16,16 @@
 
 package com.reach.kmp.shared
 
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeUIViewController
 
-fun mainViewController() = ComposeUIViewController { App() }
+@OptIn(ExperimentalComposeUiApi::class)
+fun mainViewController() =
+    ComposeUIViewController(
+        configure = {
+            parallelRendering = true
+            enableBackGesture = true
+        },
+    ) {
+        App()
+    }

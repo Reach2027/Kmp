@@ -44,14 +44,14 @@ fun exitScreenTransition(): ExitTransition =
     slideOutHorizontally(
         animationSpec = groupExit(visibilityThreshold = IntOffset.VisibilityThreshold),
         targetOffsetX = { -it / 4 },
-    ) + fadeOut(animationSpec = groupExit())
+    )
 
 @Stable
 fun popEnterScreenTransition(): EnterTransition =
     slideInHorizontally(
         animationSpec = groupEnter(visibilityThreshold = IntOffset.VisibilityThreshold),
         initialOffsetX = { -it / 4 },
-    ) + fadeIn(animationSpec = groupEnter())
+    )
 
 @Stable
 fun popExitScreenTransition(): ExitTransition =

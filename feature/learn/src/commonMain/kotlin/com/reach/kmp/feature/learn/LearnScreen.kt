@@ -156,7 +156,7 @@ private fun TitleBarWithBack(
     onBackClick: () -> Unit,
     content: @Composable () -> Unit,
 ) {
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Surface {
         Column(modifier = Modifier.fillMaxSize()) {
             TopAppBar(
                 title = {},
