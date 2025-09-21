@@ -47,7 +47,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.window.core.layout.WindowWidthSizeClass
+import androidx.window.core.layout.WindowSizeClass
 import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
@@ -68,9 +68,7 @@ private fun ScreenSampleRoute(
     externalNav: NavController,
     internalNav: NavHostController = rememberNavController(),
 ) {
-    val widthSizeClass = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
-
-    if (widthSizeClass == WindowWidthSizeClass.EXPANDED) {
+    if (currentWindowAdaptiveInfo().windowSizeClass.isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)) {
         TitleBarWithBack(onBackClick = { externalNav.navigateUp() }) {
             Row(modifier = Modifier.fillMaxSize()) {
                 Box(

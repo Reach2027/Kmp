@@ -19,18 +19,10 @@ package com.reach.kmp.buildlogic
 import com.google.devtools.ksp.gradle.KspAATask
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 internal fun Project.configureKsp() {
     with(pluginManager) {
         apply(getPluginId("ksp"))
-    }
-
-    // Koin KSP Trigger Common Metadata Generation from Native tasks
-    tasks.withType<KotlinCompilationTask<*>> {
-        if (name != "kspCommonMainKotlinMetadata") {
-            dependsOn("kspCommonMainKotlinMetadata")
-        }
     }
 
     tasks.withType<KspAATask> {

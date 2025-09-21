@@ -41,7 +41,7 @@ import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
 import org.koin.compose.KoinApplication
 import org.koin.dsl.module
-import org.koin.ksp.generated.*
+import org.koin.ksp.generated.module
 
 @Composable
 fun App(darkCallback: (Boolean) -> Unit = {}) {

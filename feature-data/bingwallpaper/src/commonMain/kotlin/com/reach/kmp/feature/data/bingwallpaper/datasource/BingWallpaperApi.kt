@@ -75,7 +75,7 @@ internal class DefaultBingWallpaperApi(
             LocalDate.Format {
                 year()
                 monthNumber()
-                dayOfMonth()
+                day()
             }
         val targetFormat =
             LocalDate.Format {
@@ -83,7 +83,7 @@ internal class DefaultBingWallpaperApi(
                 char('-')
                 monthNumber()
                 char('-')
-                dayOfMonth()
+                day()
             }
         return BingWallpapersModel(
             response.images.map {

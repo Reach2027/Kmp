@@ -9,6 +9,10 @@ echo "Running git spotlessApply..."
 ./gradlew spotlessApply --init-script=gradle/init.gradle.kts
 spotlessCode=$?
 
+echo "Running ktlintFormat..."
+
+./gradlew ktlintFormat
+
 echo "Running ktlintReport..."
 
 ./gradlew ktlintReport

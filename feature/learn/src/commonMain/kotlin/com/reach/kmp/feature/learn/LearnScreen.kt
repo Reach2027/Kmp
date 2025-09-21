@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
+import androidx.compose.material.icons.automirrored.rounded.ArrowForwardIos
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -106,8 +107,20 @@ private fun LearnScreen(
                                 .background(MaterialTheme.colorScheme.primary),
                     )
                     RkText(
-                        text = "国国国国国国国国国国",
+                        text = "111",
                         fontSize = 32.dp,
+                    )
+                    RkText(
+                        text = "DDD",
+                        fontSize = 32.dp,
+                    )
+                    RkText(
+                        text = "三D三1三",
+                        fontSize = 32.dp,
+                    )
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.ArrowForwardIos,
+                        contentDescription = "",
                     )
                     Box(
                         modifier =
@@ -133,9 +146,14 @@ private fun LearnScreen(
                                 .width(16.dp)
                                 .background(MaterialTheme.colorScheme.primary),
                     )
+
                     RkText(
-                        text = "EEEEEEEEEEEEEEEEEE",
+                        text = "DDDDDDD",
                         fontSize = 32.dp,
+                    )
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.ArrowForwardIos,
+                        contentDescription = "",
                     )
                     Box(
                         modifier =
