@@ -51,6 +51,7 @@ internal fun Project.configureComposeMultiplatform(
                     implementation(libs, "lifecycle-viewmodel")
                     implementation(libs, "lifecycle-viewmodel-savedstate")
 
+                    implementation(libs, "material3")
                     implementation(libs, "material3-adaptive")
                     implementation(libs, "material3-adaptive-layout")
                     implementation(libs, "material3-adaptive-navigation")

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:Suppress("ktlint:standard:no-wildcard-imports")
-
 package com.reach.kmp.shared
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -30,21 +28,21 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.reach.kmp.feature.bingwallpaper.BingWallpaperModule
 import com.reach.kmp.feature.bingwallpaper.bingWallpaperRoute
 import com.reach.kmp.feature.compose.screenSampleRoute
-import com.reach.kmp.feature.learn.learnModule
 import com.reach.kmp.feature.learn.learnRoute
 import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
-import org.koin.compose.KoinApplication
-import org.koin.dsl.module
-import org.koin.ksp.generated.module
+import org.koin.ksp.generated.startKoin
 
 @Composable
 fun App(darkCallback: (Boolean) -> Unit = {}) {
+    KoinApp.startKoin {
+        printLogger()
+    }
+
     val isDark = isSystemInDarkTheme()
     val colorScheme =
         if (isDark) {
@@ -60,19 +58,11 @@ fun App(darkCallback: (Boolean) -> Unit = {}) {
     MaterialTheme(
         colorScheme = colorScheme,
     ) {
-        KoinApplication(application = { modules(appModule) }) {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                AppNavHost()
-            }
+        Surface(modifier = Modifier.fillMaxSize()) {
+            AppNavHost()
         }
     }
 }
-
-private val appModule =
-    module {
-        includes(BingWallpaperModule().module)
-        includes(learnModule)
-    }
 
 @Composable
 private fun AppNavHost(navController: NavHostController = rememberNavController()) {

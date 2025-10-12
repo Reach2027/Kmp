@@ -21,11 +21,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Configuration
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 
 @Module
+@Configuration
 @ComponentScan("com.reach.kmp.data.base.common")
 class BaseCommonModule {
     @Single(binds = [CoroutineScope::class])

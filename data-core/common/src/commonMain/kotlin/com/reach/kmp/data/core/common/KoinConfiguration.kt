@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.feature.learn
+package com.reach.kmp.data.core.common
 
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.Module
+object KoinConfiguration {
+    const val DEFAULT = "DEFAULT"
 
-@Module
-@Configuration("DE")
-@ComponentScan("com.reach.kmp.feature.learn")
-class LearnModule
+    const val DEBUG = "DEBUG"
+}

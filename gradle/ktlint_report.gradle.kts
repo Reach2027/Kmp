@@ -21,7 +21,7 @@ import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 
-task("ktlintReport") {
+tasks.register("ktlintReport") {
 
     description = "project ktlint report"
     group = "ktlint report"

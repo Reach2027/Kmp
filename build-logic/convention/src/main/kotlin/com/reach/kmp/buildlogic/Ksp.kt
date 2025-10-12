@@ -16,19 +16,13 @@
 
 package com.reach.kmp.buildlogic
 
-import com.google.devtools.ksp.gradle.KspAATask
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 internal fun Project.configureKsp() {
     with(pluginManager) {
         apply(getPluginId("ksp"))
-    }
-
-    tasks.withType<KspAATask> {
-        if (name != "kspCommonMainKotlinMetadata") {
-            dependsOn("kspCommonMainKotlinMetadata")
-        }
     }
 
     // ktlint format depends on koin ksp
@@ -39,5 +33,20 @@ internal fun Project.configureKsp() {
     // ktlint check depends on koin ksp
     tasks.named("runKtlintCheckOverCommonMainSourceSet") {
         dependsOn("kspCommonMainKotlinMetadata")
+    }
+
+    tasks.withType<KotlinCompilationTask<*>>().configureEach {
+        if (name != "kspCommonMainKotlinMetadata") {
+            dependsOn("kspCommonMainKotlinMetadata")
+        }
+    }
+
+    afterEvaluate {
+        tasks.filter {
+            it.name.contains("SourcesJar", true)
+        }.forEach {
+            println("SourceJarTask====>${it.name}")
+            it.dependsOn("kspCommonMainKotlinMetadata")
+        }
     }
 }

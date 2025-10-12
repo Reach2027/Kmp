@@ -33,7 +33,7 @@ internal fun Project.configureKotlinMultiplatform(
     }
 
     extensions.configure<KotlinMultiplatformExtension> {
-        jvmToolchain(21)
+        jvmToolchain(17)
 
         // jvm
         jvm()
@@ -42,8 +42,9 @@ internal fun Project.configureKotlinMultiplatform(
         androidTarget {
             @OptIn(ExperimentalKotlinGradlePluginApi::class)
             compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_21)
+                jvmTarget.set(JvmTarget.JVM_17)
             }
+
             publishLibraryVariants("release")
         }
 

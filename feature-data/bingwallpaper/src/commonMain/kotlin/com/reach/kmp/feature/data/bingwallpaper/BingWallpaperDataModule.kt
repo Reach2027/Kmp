@@ -19,8 +19,10 @@ package com.reach.kmp.feature.data.bingwallpaper
 import com.reach.kmp.data.base.common.BaseCommonModule
 import com.reach.kmp.data.core.network.NetworkModule
 import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Configuration
 import org.koin.core.annotation.Module
 
 @Module(includes = [BaseCommonModule::class, NetworkModule::class])
+@Configuration
 @ComponentScan("com.reach.kmp.feature.data.bingwallpaper")
 class BingWallpaperDataModule

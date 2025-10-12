@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.reach.kmp.feature.learn
+package com.reach.kmp.shared
 
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.Module
+import com.reach.kmp.feature.bingwallpaper.BingWallpaperModule
+import com.reach.kmp.feature.learn.LearnModule
+import org.koin.core.annotation.KoinApplication
 
-@Module
-@Configuration("DE")
-@ComponentScan("com.reach.kmp.feature.learn")
-class LearnModule
+@KoinApplication(
+    modules = [LearnModule::class, BingWallpaperModule::class]
+)
+object KoinApp

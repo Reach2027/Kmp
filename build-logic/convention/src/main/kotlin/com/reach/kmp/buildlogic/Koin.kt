@@ -21,7 +21,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 internal fun Project.configureKoin(
     kmpExtension: KotlinMultiplatformExtension,
@@ -55,16 +54,13 @@ internal fun Project.configureKoin(
     dependencies {
         val koinKsp = libs.findLibrary("koin-ksp").get()
         add("kspCommonMainMetadata", koinKsp)
-        add("kspJvm", koinKsp)
-        add("kspAndroid", koinKsp)
-        add("kspIosX64", koinKsp)
-        add("kspIosArm64", koinKsp)
-        add("kspIosSimulatorArm64", koinKsp)
     }
 
     extensions.configure<KspExtension> {
         arg("KOIN_CONFIG_CHECK", "true")
+        arg("KOIN_LOG_TIMES", "true")
         arg("KOIN_DEFAULT_MODULE", "false")
         arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
+        arg("KOIN_EXPORT_DEFINITIONS", "true")
     }
 }
