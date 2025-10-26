@@ -4,7 +4,14 @@ import ComposeApp
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        MainViewControllerKt.mainViewController()
+        MainViewControllerKt.mainViewController(
+            createUIViewController: { () -> UIViewController in
+                let swiftUIView = VStack {
+                    Text("I am SwiftUI Text").foregroundColor(.cyan)
+                }
+                return UIHostingController(rootView: swiftUIView)
+            }
+        )
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}

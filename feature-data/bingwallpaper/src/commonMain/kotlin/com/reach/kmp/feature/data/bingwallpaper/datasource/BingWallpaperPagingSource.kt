@@ -16,8 +16,8 @@
 
 package com.reach.kmp.feature.data.bingwallpaper.datasource
 
-import app.cash.paging.PagingSource
-import app.cash.paging.PagingState
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import org.koin.core.annotation.Factory
 

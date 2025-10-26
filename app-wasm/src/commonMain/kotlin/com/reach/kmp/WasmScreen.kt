@@ -17,6 +17,10 @@
 package com.reach.kmp
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -39,6 +43,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -62,7 +67,25 @@ internal fun WasmSample() {
                 Text("Click me!")
             }
 
-            AnimatedVisibility(showContent) {
+            AnimatedVisibility(
+                visible = showContent,
+                enter =
+                    expandVertically(
+                        animationSpec =
+                            spring(
+                                stiffness = 5f,
+                                visibilityThreshold = IntSize.VisibilityThreshold,
+                            ),
+                    ),
+                exit =
+                    shrinkVertically(
+                        animationSpec =
+                            spring(
+                                stiffness = 5f,
+                                visibilityThreshold = IntSize.VisibilityThreshold,
+                            ),
+                    ),
+            ) {
                 Column(
                     Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,

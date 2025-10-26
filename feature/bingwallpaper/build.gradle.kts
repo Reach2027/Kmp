@@ -28,7 +28,7 @@ kotlin {
             implementation(libs.haze)
             implementation(libs.haze.materials)
 
-            implementation(libs.paging.compose)
+            implementation(libs.androidx.paging.compose)
         }
     }
 }

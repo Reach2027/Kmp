@@ -20,6 +20,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -79,91 +80,97 @@ private fun LearnScreen(
 ) {
     TitleBarWithBack(onBackClick = onBackClick) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Text(
-                text = text,
-                modifier = Modifier.align(Alignment.Center),
-            )
-
             Column(
+                modifier = Modifier.align(Alignment.Center),
+            ) {
+                Text(text = text)
+            }
+
+//            TextT()
+        }
+    }
+}
+
+@Composable
+private fun BoxScope.TextT() {
+    Column(
+        modifier =
+            Modifier
+                .padding(top = 32.dp)
+                .align(Alignment.TopCenter),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Row(
+            modifier =
+                Modifier.border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.primary,
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(
                 modifier =
                     Modifier
-                        .padding(top = 32.dp)
-                        .align(Alignment.TopCenter),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Row(
-                    modifier =
-                        Modifier.border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.primary,
-                        ),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Box(
-                        modifier =
-                            Modifier
-                                .height(4.dp)
-                                .width(16.dp)
-                                .background(MaterialTheme.colorScheme.primary),
-                    )
-                    RkText(
-                        text = "111",
-                        fontSize = 32.dp,
-                    )
-                    RkText(
-                        text = "DDD",
-                        fontSize = 32.dp,
-                    )
-                    RkText(
-                        text = "三D三1三",
-                        fontSize = 32.dp,
-                    )
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowForwardIos,
-                        contentDescription = "",
-                    )
-                    Box(
-                        modifier =
-                            Modifier
-                                .height(4.dp)
-                                .width(16.dp)
-                                .background(MaterialTheme.colorScheme.primary),
-                    )
-                }
-                Spacer(modifier = Modifier.height(18.dp))
-                Row(
-                    modifier =
-                        Modifier.border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.primary,
-                        ),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Box(
-                        modifier =
-                            Modifier
-                                .height(4.dp)
-                                .width(16.dp)
-                                .background(MaterialTheme.colorScheme.primary),
-                    )
+                        .height(4.dp)
+                        .width(16.dp)
+                        .background(MaterialTheme.colorScheme.primary),
+            )
+            RkText(
+                text = "111",
+                fontSize = 32.dp,
+            )
+            RkText(
+                text = "DDD",
+                fontSize = 32.dp,
+            )
+            RkText(
+                text = "三D三1三",
+                fontSize = 32.dp,
+            )
+            Icon(
+                imageVector = Icons.AutoMirrored.Rounded.ArrowForwardIos,
+                contentDescription = "",
+            )
+            Box(
+                modifier =
+                    Modifier
+                        .height(4.dp)
+                        .width(16.dp)
+                        .background(MaterialTheme.colorScheme.primary),
+            )
+        }
+        Spacer(modifier = Modifier.height(18.dp))
+        Row(
+            modifier =
+                Modifier.border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.primary,
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(
+                modifier =
+                    Modifier
+                        .height(4.dp)
+                        .width(16.dp)
+                        .background(MaterialTheme.colorScheme.primary),
+            )
 
-                    RkText(
-                        text = "DDDDDDD",
-                        fontSize = 32.dp,
-                    )
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowForwardIos,
-                        contentDescription = "",
-                    )
-                    Box(
-                        modifier =
-                            Modifier
-                                .height(4.dp)
-                                .width(16.dp)
-                                .background(MaterialTheme.colorScheme.primary),
-                    )
-                }
-            }
+            RkText(
+                text = "DDDDDDD",
+                fontSize = 32.dp,
+            )
+            Icon(
+                imageVector = Icons.AutoMirrored.Rounded.ArrowForwardIos,
+                contentDescription = "",
+            )
+            Box(
+                modifier =
+                    Modifier
+                        .height(4.dp)
+                        .width(16.dp)
+                        .background(MaterialTheme.colorScheme.primary),
+            )
         }
     }
 }

@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -60,9 +61,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.paging.LoadState
-import app.cash.paging.compose.LazyPagingItems
-import app.cash.paging.compose.collectAsLazyPagingItems
-import app.cash.paging.compose.itemKey
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import coil3.compose.AsyncImage
 import com.reach.kmp.feature.data.bingwallpaper.model.BingWallpaperModel
 import com.reach.kmp.ui.base.common.toDp
@@ -94,7 +95,7 @@ private fun BingWallpaperRoute(
     BingWallpaperScreen(
         pagingItems = pagingItems,
         onBackClick = { navController.navigateUp() },
-        onRetryClick = { pagingItems.retry() },
+        onRetryClick = { },
     )
 }
 
@@ -134,30 +135,32 @@ private fun TitleBarWithBack(
     Surface(
         modifier = Modifier.fillMaxSize(),
     ) {
-        content()
+        Box {
+            content()
 
-        TopAppBar(
-            title = {},
-            modifier =
-                Modifier
-                    .hazeEffect(state = hazeState, style = CupertinoMaterials.thick())
-                    .fillMaxWidth(),
-            navigationIcon = {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
-                    contentDescription = "",
-                    modifier =
-                        Modifier
-                            .clickable { onBackClick() }
-                            .padding(12.dp),
-                )
-            },
-            colors =
-                TopAppBarDefaults.topAppBarColors().copy(
-                    scrolledContainerColor = Color.Transparent,
-                ),
-            scrollBehavior = scrollBehavior,
-        )
+            TopAppBar(
+                title = {},
+                modifier =
+                    Modifier
+                        .hazeEffect(state = hazeState, style = CupertinoMaterials.regular())
+                        .fillMaxWidth(),
+                navigationIcon = {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.ArrowBackIos,
+                        contentDescription = "",
+                        modifier =
+                            Modifier
+                                .clickable { onBackClick() }
+                                .padding(12.dp),
+                    )
+                },
+                colors =
+                    TopAppBarDefaults.topAppBarColors().copy(
+                        scrolledContainerColor = Color.Transparent,
+                    ),
+                scrollBehavior = scrollBehavior,
+            )
+        }
     }
 }
 
@@ -221,7 +224,7 @@ private fun WallpaperItems(
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 390.dp),
         state = rememberLazyGridState(),
-        contentPadding = PaddingValues(all = 16.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier =
@@ -257,14 +260,7 @@ private fun WallpaperItems(
             span = { GridItemSpan(maxLineSpan) },
             contentType = "PaddingBottom",
         ) {
-            Spacer(
-                Modifier.height(
-                    WindowInsets
-                        .navigationBars
-                        .getTop(LocalDensity.current)
-                        .toDp(),
-                ),
-            )
+            Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
         }
     }
 }

@@ -27,7 +27,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.datetime)
 
-            implementation(libs.paging.common)
+            implementation(libs.androidx.paging.common)
         }
     }
 }

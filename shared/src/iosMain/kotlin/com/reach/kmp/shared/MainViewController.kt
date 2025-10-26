@@ -16,16 +16,30 @@
 
 package com.reach.kmp.shared
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.UIKitViewController
 import androidx.compose.ui.window.ComposeUIViewController
+import platform.UIKit.UIViewController
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun mainViewController() =
+fun mainViewController(createUIViewController: () -> UIViewController) =
     ComposeUIViewController(
         configure = {
             parallelRendering = true
             enableBackGesture = true
         },
     ) {
-        App()
+        App(
+            nativeUI = {
+                UIKitViewController(
+                    factory = createUIViewController,
+                    modifier =
+                        Modifier
+                            .size(width = 300.dp, height = 60.dp),
+                )
+            },
+        )
     }

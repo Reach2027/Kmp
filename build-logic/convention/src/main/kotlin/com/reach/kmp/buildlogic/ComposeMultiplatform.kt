@@ -36,7 +36,7 @@ internal fun Project.configureComposeMultiplatform(
             commonMain {
                 dependencies {
                     implementation(composeDeps.animation)
-                    implementation(composeDeps.material3)
+//                    implementation(composeDeps.material3)
                     implementation(composeDeps.materialIconsExtended)
                     implementation(composeDeps.foundation)
                     implementation(composeDeps.ui)
@@ -45,6 +45,8 @@ internal fun Project.configureComposeMultiplatform(
                     implementation(composeDeps.components.uiToolingPreview)
                     implementation(composeDeps.runtime)
                     implementation(composeDeps.runtimeSaveable)
+
+                    implementation(libs, "navigation")
 
                     implementation(libs, "lifecycle-common")
                     implementation(libs, "lifecycle-runtime")
@@ -56,7 +58,8 @@ internal fun Project.configureComposeMultiplatform(
                     implementation(libs, "material3-adaptive-layout")
                     implementation(libs, "material3-adaptive-navigation")
 
-                    implementation(libs, "navigation")
+                    implementation(libs, "savedstate")
+                    implementation(libs, "window-core")
                 }
             }
 

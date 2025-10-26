@@ -19,8 +19,19 @@ package com.reach.kmp.shared
 import com.reach.kmp.feature.bingwallpaper.BingWallpaperModule
 import com.reach.kmp.feature.learn.LearnModule
 import org.koin.core.annotation.KoinApplication
+import org.koin.ksp.generated.startKoin
 
 @KoinApplication(
-    modules = [LearnModule::class, BingWallpaperModule::class]
+    modules = [LearnModule::class, BingWallpaperModule::class],
 )
-object KoinApp
+object KoinApp {
+    var isInit = false
+}
+
+fun KoinApp.init() {
+    if (isInit) return
+    isInit = true
+    KoinApp.startKoin {
+        printLogger()
+    }
+}

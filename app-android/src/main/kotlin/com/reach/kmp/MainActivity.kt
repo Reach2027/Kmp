@@ -18,10 +18,13 @@ package com.reach.kmp
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.viewinterop.AndroidView
 import com.reach.kmp.shared.App
 
 private val LightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
@@ -32,18 +35,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App { isDark ->
-                enableEdgeToEdge(
-                    statusBarStyle =
-                        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) {
-                            isDark
+            App(
+                darkCallback = { isDark ->
+                    enableEdgeToEdge(
+                        statusBarStyle =
+                            SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) {
+                                isDark
+                            },
+                        navigationBarStyle =
+                            SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) {
+                                isDark
+                            },
+                    )
+                },
+                nativeUI = {
+                    AndroidView(
+                        factory = { cxt ->
+                            TextView(cxt).apply {
+                                text = "I am Android TextView"
+                                setTextColor(Color.CYAN)
+                                setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20f)
+                            }
                         },
-                    navigationBarStyle =
-                        SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) {
-                            isDark
-                        },
-                )
-            }
+                    )
+                },
+            )
         }
     }
 }

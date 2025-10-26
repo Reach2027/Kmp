@@ -35,24 +35,24 @@ import com.reach.kmp.ui.core.common.animation.enterScreenTransition
 import com.reach.kmp.ui.core.common.animation.exitScreenTransition
 import com.reach.kmp.ui.core.common.animation.popEnterScreenTransition
 import com.reach.kmp.ui.core.common.animation.popExitScreenTransition
-import org.koin.ksp.generated.startKoin
 
 @Composable
-fun App(darkCallback: (Boolean) -> Unit = {}) {
-    KoinApp.startKoin {
-        printLogger()
-    }
+fun App(
+    darkCallback: (Boolean) -> Unit = { },
+    nativeUI: @Composable () -> Unit = { },
+) {
+    KoinApp.init()
 
-    val isDark = isSystemInDarkTheme()
+    val IsDark = isSystemInDarkTheme()
     val colorScheme =
-        if (isDark) {
+        if (IsDark) {
             darkColorScheme()
         } else {
             lightColorScheme()
         }
 
-    LaunchedEffect(isDark) {
-        darkCallback(isDark)
+    LaunchedEffect(IsDark) {
+        darkCallback(IsDark)
     }
 
     MaterialTheme(
@@ -62,6 +62,15 @@ fun App(darkCallback: (Boolean) -> Unit = {}) {
             AppNavHost()
         }
     }
+
+//    Box(
+//        contentAlignment = Alignment.BottomCenter,
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .safeContentPadding(),
+//    ) {
+//        nativeUI()
+//    }
 }
 
 @Composable
